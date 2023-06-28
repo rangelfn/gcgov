@@ -1,0 +1,30 @@
+﻿@model gcgov.Models.DotacaoOrcamentaria
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DotacaoOrcamentaria</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FonteRecurso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FonteRecurso)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProgramaTrabalho)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProgramaTrabalho)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.NaturezaDespesa">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

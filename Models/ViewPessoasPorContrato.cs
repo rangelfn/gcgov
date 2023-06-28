@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace gcgov.Models;
 
-public partial class PessoasPorContrato
+public partial class ViewPessoasPorContrato
 {
     public int? UgCodigoId { get; set; }
 

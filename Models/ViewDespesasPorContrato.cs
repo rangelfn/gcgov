@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace gcgov.Models;
 
-public partial class VwPortariasPorContrato
+public partial class ViewDespesasPorContrato
 {
     public int? UgCodigoId { get; set; }
 
@@ -17,9 +17,13 @@ public partial class VwPortariasPorContrato
 
     public decimal? Valor { get; set; }
 
-    public string PortariaNumero { get; set; } = null!;
+    public string Programa { get; set; } = null!;
 
-    public string ProtocoloDiof { get; set; } = null!;
+    public string Acao { get; set; } = null!;
 
-    public DateTime? DataPublicacao { get; set; }
+    public string? Fonte { get; set; }
+
+    public string? Natureza { get; set; }
+
+    public string? Elemento { get; set; }
 }

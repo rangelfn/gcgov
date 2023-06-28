@@ -1,15 +1,32 @@
+using gcgov.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Carregar a configura„„o do arquivo appsettings.json
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+// Configurar a string de conex„o
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Adicionar o DbContext usando a string de conex„o
+builder.Services.AddDbContext<GCGovContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+
+// Adicionar os servi„os ao cont„iner
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar o pipeline de requisi„„o HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

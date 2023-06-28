@@ -11,3 +11,4 @@ public partial class ModLicitacao
 
     public virtual ICollection<Contrato> Contratos { get; set; } = new List<Contrato>();
 }
+

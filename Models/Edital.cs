@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace gcgov.Models;
 
-public partial class Editai
+public partial class Edital
 {
     public int EdtId { get; set; }
 

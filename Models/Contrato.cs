@@ -39,7 +39,7 @@ public partial class Contrato
 
     public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
 
-    public virtual ICollection<Editai> Editais { get; set; } = new List<Editai>();
+    public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
 
     public virtual ModLicitacao? ModLicitacao { get; set; }
 

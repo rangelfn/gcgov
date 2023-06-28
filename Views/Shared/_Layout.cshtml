@@ -25,22 +25,21 @@
                                 <a href="@Url.Action("Index", "Home")" class="nav-link active">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="@Url.Action("About", "Home")" class="nav-link">Privacidade</a>
+                                <a href="@Url.Action("Privacy", "Home")" class="nav-link">Privacidade</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contratos</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="dropdown-item">Cadastrar</a></li>
-                                    <li><a href="#" class="dropdown-item">Editar</a></li>
-                                    <li><a href="#" class="dropdown-item">Deletar</a></li>
+                                    <li><a href="@Url.Action("Index", "Contratos")" class="dropdown-item">Listar</a></li>
+                                    <li><a href="@Url.Action("Create", "Contratos")" class="dropdown-item">Cadastrar</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Adicionais</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="dropdown-item">Editais</a></li>
-                                    <li><a href="#" class="dropdown-item">Aditivos</a></li>
-                                    <li><a href="#" class="dropdown-item">Apostilamentos</a></li>
+                                    <li><a href="@Url.Action("Index", "Editais")" class="dropdown-item">Editais</a></li>
+                                    <li><a href="@Url.Action("Index", "Aditivos")" class="dropdown-item">Aditivos</a></li>
+                                    <li><a href="@Url.Action("Index", "Apostilamentos")" class="dropdown-item">Apostilamentos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">

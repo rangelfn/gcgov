@@ -1,0 +1,52 @@
+﻿@model gcgov.Models.Edital
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Edital</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EdtNum" class="control-label"></label>
+                <input asp-for="EdtNum" class="form-control" />
+                <span asp-validation-for="EdtNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdtTipo" class="control-label"></label>
+                <input asp-for="EdtTipo" class="form-control" />
+                <span asp-validation-for="EdtTipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdtLink" class="control-label"></label>
+                <input asp-for="EdtLink" class="form-control" />
+                <span asp-validation-for="EdtLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdtData" class="control-label"></label>
+                <input asp-for="EdtData" class="form-control" />
+                <span asp-validation-for="EdtData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContratoId" class="control-label"></label>
+                <select asp-for="ContratoId" class ="form-control" asp-items="ViewBag.ContratoId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
