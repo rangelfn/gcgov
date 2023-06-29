@@ -34,7 +34,6 @@ public partial class GCGovContext : DbContext
     public virtual DbSet<ViewContratosPagamento> ViewContratosPagamentos { get; set; }
     public virtual DbSet<ViewEditaisPorContrato> ViewEditaisPorContratos { get; set; }
     public virtual DbSet<ViewPagamentosTotalPorContrato> ViewPagamentosTotalPorContratos { get; set; }
-    public virtual DbSet<VwContratosPagamento> VwContratosPagamentos { get; set; } 
     public virtual DbSet<ViewPortariasPorContrato> VwPortariasPorContratos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -395,26 +394,6 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.ValorTotalPagamentos).HasColumnType("decimal(38, 2)");
-        });
-
-        modelBuilder.Entity<VwContratosPagamento>(entity =>
-        {
-            entity.HasNoKey().ToView("vwContratosPagamentos");
-
-            entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.DataCadastro).HasColumnType("date");
-            entity.Property(e => e.DataPagamento).HasColumnType("date");
-            entity.Property(e => e.ModId).HasColumnName("ModID");
-            entity.Property(e => e.NotaEmpenho).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.NotaLancamento).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
-            entity.Property(e => e.OrdemBancaria).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Parcela).HasMaxLength(10).IsUnicode(false);
-            entity.Property(e => e.PreparacaoPagamento).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
-            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
-            entity.Property(e => e.ValorPagamento).HasColumnType("decimal(10, 2)");
         });
 
         modelBuilder.Entity<ViewPortariasPorContrato>(entity =>

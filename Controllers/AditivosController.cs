@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using gcgov.Models;
@@ -52,8 +48,7 @@ namespace gcgov.Controllers
         }
 
         // POST: Aditivos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AdtId,AdtNum,Descricao,AdtData,Valor,ContratoId")] Aditivo aditivo)
@@ -86,8 +81,7 @@ namespace gcgov.Controllers
         }
 
         // POST: Aditivos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AdtId,AdtNum,Descricao,AdtData,Valor,ContratoId")] Aditivo aditivo)
@@ -158,7 +152,6 @@ namespace gcgov.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool AditivoExists(int id)
         {
           return (_context.Aditivos?.Any(e => e.AdtId == id)).GetValueOrDefault();

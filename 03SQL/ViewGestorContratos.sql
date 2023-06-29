@@ -11,33 +11,19 @@ USE GestorContratos
 
 CREATE VIEW ViewEditaisPorContratos
 AS
-SELECT C.UgCodigo, c.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
+SELECT C.UgCodigoID, c.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
        E.EdtNum, E.EdtTipo, E.EdtData
 FROM Contratos C
 INNER JOIN Editais E ON C.ContratoID = E.ContratoID;
-
-
----------------------------------
--- Cria: Pagamentos por contratos
----------------------------------
-
-CREATE VIEW vwContratosPagamentos AS
-SELECT C.UgCodigo, c.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
-       pt.NotaEmpenho, pt.DataCadastro,
-       p.NotaLancamento, p.PreparacaoPagamento, p.OrdemBancaria, p.Valor AS ValorPagamento,
-       p.DataPagamento, p.Parcela
-FROM Contratos c
-JOIN PgtosTipos pt ON c.ContratoID = pt.ContratoID
-JOIN Pagamentos p ON PT.PgtoTipoID = p.PgtoID;
 
 --------------------------------------------------
 -- Cria View: Contratos com Detalhes de Pagamentos
 --------------------------------------------------
 CREATE VIEW ViewContratosPagamentos
 AS
-SELECT C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
        P.NotaLancamento, P.PreparacaoPagamento, P.OrdemBancaria, P.DataPagamento, P.Valor AS ValorPagamento,
-       PT.NotaEmpenho, PT.PgtoModalidade
+       PT.NotaEmpenho, PT.PgtoModID
 FROM Contratos C
 INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
 INNER JOIN Pagamentos P ON PT.PgtoTipoID = P.PgtoID;
@@ -49,33 +35,36 @@ INNER JOIN Pagamentos P ON PT.PgtoTipoID = P.PgtoID;
 
 CREATE VIEW ViewPagamentosTotalPorContrato
 AS
-SELECT C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
        STRING_AGG(P.NotaLancamento, ', ') AS NotasLancamento, 
        SUM(P.Valor) AS ValorTotalPagamentos
 FROM Contratos C
 INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
 INNER JOIN Pagamentos P ON PT.PgtoTipoID = P.PgtoID
-GROUP BY C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor;
+GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor;
 
 
 ---------------------------------------------
 -- Cria View: Despesas Orçamentaria por contratos
 ---------------------------------------------
-CREATE VIEW DespesasPorContratos
+CREATE VIEW ViewDotacaoPorContratos 
 AS
-SELECT C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
-       DO.Programa, DO.Acao, DO.Fonte, DO.Natureza, DO.Elemento
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+       DO.NaturezaDespesa, DO.FonteRecurso, DO.ProgramaTrabalho
 FROM Contratos C
-INNER JOIN DotacaoOrcamentarias DO ON C.ContratoID = DO.ContratoID;
+INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
+INNER JOIN DotacaoOrcamentarias DO ON PT.NaturezaDespesa = DO.NaturezaDespesa;
+
+
 
 
 ---------------------------------
 -- Cria View: Portarias por contratos
 ---------------------------------
 
-CREATE VIEW vwPortariasPorContratos
+CREATE VIEW ViewPortariasPorContratos
 AS
-SELECT C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
        P.PortariaNumero, P.ProtocoloDiof, P.DataPublicacao
 FROM Contratos C
 INNER JOIN Portarias P ON C.ContratoID = P.ContratoID;
@@ -84,11 +73,13 @@ INNER JOIN Portarias P ON C.ContratoID = P.ContratoID;
 ---------------------------------
 -- Cria View: Pessoas por Contratos
 ---------------------------------
-CREATE VIEW PessoasPorContratos
+CREATE VIEW ViewServidoresPorContratos
 AS
-SELECT C.UgCodigo, C.ProcessoSei, C.Contratada, C.Objeto, C.ModID, C.Valor,
-       P.Matricula, P.Nome,
-       PP.Funcao, PP.Tipo
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+       S.Matricula, S.Nome,
+       PS.Funcao, PS.Resolucao
 FROM Contratos C
-INNER JOIN PortariasPessoas PP ON PP.PortariaID = PP.PortariaID
-INNER JOIN Pessoas P ON PP.PessoaID = P.PessoaID;
+INNER JOIN Portarias P ON C.ContratoID = P.ContratoID
+INNER JOIN PortariasServidores PS ON P.PortariaID = PS.PortariaID
+INNER JOIN Servidores S ON PS.Matricula = S.Matricula;
+

@@ -53,7 +53,7 @@
   INSERT INTO PgtosModalidade (PgtoModNome) VALUES
 	('Estimado'),
 	('Global'),
-	('Estimado'),
+	('Estimado')
 
   INSERT INTO ModLicitacao (ModNome) VALUES
 	('Concorrência'),

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using gcgov.Models;
@@ -52,8 +48,7 @@ namespace gcgov.Controllers
         }
 
         // POST: Apostilamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AptId,AptNum,AptDesc,AptData,Valor,ContratoId")] Apostilamento apostilamento)
@@ -86,8 +81,7 @@ namespace gcgov.Controllers
         }
 
         // POST: Apostilamentos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AptId,AptNum,AptDesc,AptData,Valor,ContratoId")] Apostilamento apostilamento)
@@ -158,7 +152,6 @@ namespace gcgov.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool ApostilamentoExists(int id)
         {
           return (_context.Apostilamentos?.Any(e => e.AptId == id)).GetValueOrDefault();

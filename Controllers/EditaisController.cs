@@ -52,8 +52,8 @@ namespace gcgov.Controllers
         }
 
         // POST: Editais/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EdtId,EdtNum,EdtTipo,EdtLink,EdtData,ContratoId")] Edital edital)
@@ -86,8 +86,8 @@ namespace gcgov.Controllers
         }
 
         // POST: Editais/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EdtId,EdtNum,EdtTipo,EdtLink,EdtData,ContratoId")] Edital edital)
