@@ -1,75 +1,50 @@
 ﻿@model IEnumerable<gcgov.Models.Contrato>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Litagem de Contratos";
 }
 
-<h1>Index</h1>
-
+<h1>Listagem de Contratos</h1>
 <p>
-     <a asp-action="Create" class="btn btn-primary">Cadastrar</a>
+    <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
+        <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
+    </a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Extrato)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contratada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Objeto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProcessoSei)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProtocoloDiof)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModLicitacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UgCodigo)
-            </th>
+            <th>Extrato</th>
+            <th>Contratada</th>
+            <th>Objeto</th>
+            <th>Vigência</th>
+            <th>Início</th>
+            <th>Processo SEI</th>
+            <th>Prot DIOF</th>
+            <th>Valor</th>
+            <th>Modalidade</th>
+            <th>UG</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@Html.DisplayFor(modelItem => item.Extrato)</td>
+            <td>@Html.DisplayFor(modelItem => item.Contratada)</td>
+            <td>@Html.DisplayFor(modelItem => item.Objeto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Vigencia)</td>
+            <td>@Html.DisplayFor(modelItem => item.DataInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProcessoSei)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProtocoloDiof)</td>
+            <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+            <td>@Html.DisplayFor(modelItem => item.ModLicitacao.ModNome)</td>
+            <td>@Html.DisplayFor(modelItem => item.UgCodigo.UgNome)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Extrato)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contratada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objeto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProcessoSei)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProtocoloDiof)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModLicitacao.ModLicitacaoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UgCodigo.UgCodigoId)
-            </td>
-            <td>
-                <a asp-action="Edit" class="btn btn-primary" class="btn btn-primary" asp-route-id="@item.ContratoId" title="Editar"><i class="fas fa-pen-square mr-2"></i></a>
-                <a asp-action="Details" class="btn btn-success" class="btn btn-success" asp-route-id="@item.ContratoId" title="Detalhar"><i class="fas fa-file-alt mr-2"></i></a>
-                <a asp-action="Delete" class="btn btn-danger" class="btn btn-danger" asp-route-id="@item.ContratoId" title="Apagar"><i class="fas fa-trash mr-2"></i></a>
+              <div class="btn-group" role="group" aria-label="Operações">
+                  <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.ContratoId" title="Detalhar"><i class="fa-regular fa-eye"></i></a>
+                  <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ContratoId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                  <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ContratoId" title="Apagar"><i class="fas fa-trash"></i></a>
+              </div>
             </td>
         </tr>
 }

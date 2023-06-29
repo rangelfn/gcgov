@@ -1,0 +1,59 @@
+﻿@model IEnumerable<gcgov.Models.PgtosTipo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaEmpenho)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaturezaDespesaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PgtoMod)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotaEmpenho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contrato.ContratoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaturezaDespesaNavigation.NaturezaDespesa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PgtoMod.PgtoModId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PgtoTipoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PgtoTipoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PgtoTipoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -12,5 +12,5 @@ public partial class Portaria
     public DateTime? DataInicio { get; set; }
     public int? ContratoId { get; set; }
     public virtual Contrato? Contrato { get; set; }
-    public virtual ICollection<PortariasServidore> PortariasServidores { get; set; } = new List<PortariasServidore>();
+    public virtual ICollection<PortariaServidor> PortariasServidores { get; set; } = new List<PortariaServidor>();
 }

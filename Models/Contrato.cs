@@ -1,30 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace gcgov.Models;
-public partial class Contrato
+namespace gcgov.Models
 {
-    public int ContratoId { get; set; }
-    public string Extrato { get; set; } = null!;
-    public string Contratante { get; set; } = null!;
-    public string Contratada { get; set; } = null!;
-    public string Objeto { get; set; } = null!;
-    public int Vigencia { get; set; }
-    public DateTime DataInicio { get; set; }
-    public string ProcessoSei { get; set; } = null!;
-    public string LinkPublico { get; set; } = null!;
-    public DateTime DataAssinatura { get; set; }
-    public string ProtocoloDiof { get; set; } = null!;
-    public int? ModLicitacaoId { get; set; }
-    public decimal? Valor { get; set; }
-    public int? UgCodigoId { get; set; }
-    public int? UgDpId { get; set; }
-    public virtual ICollection<Aditivo> Aditivos { get; set; } = new List<Aditivo>();
-    public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
-    public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
-    public virtual ModLicitacao? ModLicitacao { get; set; }
-    public virtual ICollection<PgtosTipo> PgtosTipos { get; set; } = new List<PgtosTipo>();
-    public virtual ICollection<Portaria> Portaria { get; set; } = new List<Portaria>();
-    public virtual UnidadesGestora? UgCodigo { get; set; }
-    public virtual UgDepartamento? UgDp { get; set; }
+    public partial class Contrato
+    {
+        public int ContratoId { get; set; }
+
+        [Display(Name = "Extrato")]
+        public string Extrato { get; set; } = null!;
+
+        [Display(Name = "Contratante")]
+        public string Contratante { get; set; } = null!;
+
+        [Display(Name = "Contratada")]
+        public string Contratada { get; set; } = null!;
+
+        [Display(Name = "Objeto")]
+        public string Objeto { get; set; } = null!;
+
+        [Display(Name = "Vigência Dias")]
+        public int Vigencia { get; set; }
+
+        [Display(Name = "Início")]
+        public DateTime DataInicio { get; set; }
+
+        [Display(Name = "Processo SEI")]
+        public string ProcessoSei { get; set; } = null!;
+
+        [Display(Name = "Link")]
+        public string LinkPublico { get; set; } = null!;
+
+        [Display(Name = "Assinatura")]
+        public DateTime DataAssinatura { get; set; }
+
+        [Display(Name = "Protocolo DIOF")]
+        public string ProtocoloDiof { get; set; } = null!;
+
+        [Display(Name = "Modalidade")]
+        public int? ModLicitacaoId { get; set; }
+
+        [Display(Name = "Valor")]
+        public decimal? Valor { get; set; }
+
+        [Display(Name = "Cód UG")]
+        public int? UgCodigoId { get; set; }
+
+        [Display(Name = "Departamento")]
+        public int? UgDpId { get; set; }
+
+        // Propriedades adicionadas para os campos de nome
+        [Display(Name = "Modalidade")]
+        public virtual ModLicitacao? ModLicitacao { get; set; }
+
+        [Display(Name = "Cód UG")]
+        public virtual UnidadesGestora? UgCodigo { get; set; }
+
+        [Display(Name = "Departamento")]
+        public virtual UgDepartamento? UgDp { get; set; }
+
+        public virtual ICollection<Aditivo> Aditivos { get; set; } = new List<Aditivo>();
+        public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
+        public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
+        public virtual ICollection<PgtosTipo> PgtosTipos { get; set; } = new List<PgtosTipo>();
+        public virtual ICollection<Portaria> Portaria { get; set; } = new List<Portaria>();
+    }
 }
