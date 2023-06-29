@@ -1,4 +1,4 @@
-using gcgov.Models;
+using GCGov.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace gcgov.Models;
+namespace GCGov.Models;
 public partial class UgUsuario
 {
     public int UgUsuariosId { get; set; }

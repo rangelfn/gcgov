@@ -1,4 +1,4 @@
-namespace gcgov.Models
+namespace GCGov.Models
 {
     public class ErrorViewModel
     {

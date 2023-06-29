@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using gcgov.Models;
+using GCGov.Models;
 
-namespace gcgov.Controllers
+namespace GCGov.Controllers
 {
     public class PagamentosController : Controller
     {
@@ -21,8 +21,8 @@ namespace gcgov.Controllers
         // GET: Pagamentos
         public async Task<IActionResult> Index()
         {
-            var gCGovContext = _context.Pagamentos.Include(p => p.PgtoTipo);
-            return View(await gCGovContext.ToListAsync());
+            var GCGovContext = _context.Pagamentos.Include(p => p.PgtoTipo);
+            return View(await GCGovContext.ToListAsync());
         }
 
         // GET: Pagamentos/Details/5

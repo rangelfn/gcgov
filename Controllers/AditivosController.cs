@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using gcgov.Models;
+using GCGov.Models;
 
-namespace gcgov.Controllers
+namespace GCGov.Controllers
 {
     public class AditivosController : Controller
     {
@@ -17,8 +17,8 @@ namespace gcgov.Controllers
         // GET: Aditivos
         public async Task<IActionResult> Index()
         {
-            var gCGovContext = _context.Aditivos.Include(a => a.Contrato);
-            return View(await gCGovContext.ToListAsync());
+            var GCGovContext = _context.Aditivos.Include(a => a.Contrato);
+            return View(await GCGovContext.ToListAsync());
         }
 
         // GET: Aditivos/Details/5

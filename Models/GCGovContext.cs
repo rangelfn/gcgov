@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace gcgov.Models;
+namespace GCGov.Models;
 public partial class GCGovContext : DbContext
 {
     public GCGovContext()

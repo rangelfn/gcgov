@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using gcgov.Models;
+using GCGov.Models;
 
-namespace gcgov.Controllers
+namespace GCGov.Controllers
 {
     public class EditaisController : Controller
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace gcgov.Models
+namespace GCGov.Models
 {
     public partial class Contrato
     {
@@ -44,7 +44,7 @@ namespace gcgov.Models
         [Display(Name = "Valor")]
         public decimal? Valor { get; set; }
 
-        [Display(Name = "Cód UG")]
+        [Display(Name = "Unidade Gestora")]
         public int? UgCodigoId { get; set; }
 
         [Display(Name = "Departamento")]
@@ -54,7 +54,7 @@ namespace gcgov.Models
         [Display(Name = "Modalidade")]
         public virtual ModLicitacao? ModLicitacao { get; set; }
 
-        [Display(Name = "Cód UG")]
+        [Display(Name = "Unidade Gestora")]
         public virtual UnidadesGestora? UgCodigo { get; set; }
 
         [Display(Name = "Departamento")]

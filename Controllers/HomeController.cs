@@ -1,8 +1,8 @@
-﻿using gcgov.Models;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace gcgov.Controllers
+namespace GCGov.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,7 +18,7 @@ namespace gcgov.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacidade()
         {
             return View();
         }

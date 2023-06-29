@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using gcgov.Models;
+using GCGov.Models;
 
-namespace gcgov.Controllers
+namespace GCGov.Controllers
 {
     public class PortariasController : Controller
     {
@@ -21,8 +21,8 @@ namespace gcgov.Controllers
         // GET: Portarias
         public async Task<IActionResult> Index()
         {
-            var gCGovContext = _context.Portarias.Include(p => p.Contrato);
-            return View(await gCGovContext.ToListAsync());
+            var GCGovContext = _context.Portarias.Include(p => p.Contrato);
+            return View(await GCGovContext.ToListAsync());
         }
 
         // GET: Portarias/Details/5
