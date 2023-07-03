@@ -1,60 +1,43 @@
 ﻿@model IEnumerable<GCGov.Models.Aditivo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listagem de Aditivos";
 }
 
-<h1>Index</h1>
+<h1>Listagem de Aditivos</h1>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
     </a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AdtNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdtData)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contrato)
-            </th>
+            <th>Número</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Contrato</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdtNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdtData)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contrato.ContratoId)
-            </td>
-            <td>
-                <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.AdtId"  title="Ver Detalhes"><i class="fas fa-file-alt"></i></a>
-                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.AdtId" title="Editar"><i class="fas fa-pen-square"></i></a>
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.AdtId" title="Apagar"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AdtNum)</td>
+                <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdtData)</td>
+                <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td>@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Operações">
+                        <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.AdtId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.AdtId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.AdtId" title="Apagar"><i class="fas fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

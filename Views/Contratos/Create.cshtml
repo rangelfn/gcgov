@@ -5,8 +5,7 @@
 }
 
 <div class="row justify-content-center">
-    <h1>Adicionar</h1>
-    <h4>Contrato</h4>
+    <h4>Adicionar Contrato</h4>
     <hr />
 
     <div class="row">
@@ -16,12 +15,12 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label asp-for="Extrato" class="control-label"></label>
-                        <input asp-for="Extrato" class="form-control" />
+                        <input asp-for="Extrato" class="form-control"/>
                         <span asp-validation-for="Extrato" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="Contratante" class="control-label"></label>
-                        <input asp-for="Contratante" class="form-control" />
+                        <input asp-for="Contratante" class="form-control"/>
                         <span asp-validation-for="Contratante" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
@@ -31,55 +30,64 @@
                     </div>
                     <div class="col-md-12">
                         <label asp-for="Objeto" class="control-label"></label>
-                        <input asp-for="Objeto" class="form-control" />
+                        <input asp-for="Objeto" class="form-control"/>
                         <span asp-validation-for="Objeto" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="ProcessoSei" class="control-label"></label>
-                        <input asp-for="ProcessoSei" class="form-control" />
+                        <input asp-for="ProcessoSei" class="form-control"/>
                         <span asp-validation-for="ProcessoSei" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="ProtocoloDiof" class="control-label"></label>
-                        <input asp-for="ProtocoloDiof" class="form-control" />
+                        <input asp-for="ProtocoloDiof" class="form-control"/>
                         <span asp-validation-for="ProtocoloDiof" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="LinkPublico" class="control-label"></label>
-                        <input asp-for="LinkPublico" class="form-control" />
+                        <input asp-for="LinkPublico" class="form-control"/>
                         <span asp-validation-for="LinkPublico" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="DataAssinatura" class="control-label"></label>
-                        <input asp-for="DataAssinatura" class="form-control" />
+                        <input asp-for="DataAssinatura" class="form-control" type="date"/>
                         <span asp-validation-for="DataAssinatura" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="DataInicio" class="control-label"></label>
-                        <input asp-for="DataInicio" class="form-control" />
+                        <input asp-for="DataInicio" class="form-control" type="date"/>
                         <span asp-validation-for="DataInicio" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="Vigencia" class="control-label"></label>
-                        <input asp-for="Vigencia" class="form-control" />
+                        <input asp-for="Vigencia" class="form-control"/>
                         <span asp-validation-for="Vigencia" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="ModLicitacaoId" class="control-label"></label>
-                        <select asp-for="ModLicitacaoId" class="form-control" asp-items="ViewBag.ModLicitacaoId"></select>
+                        <select asp-for="ModLicitacaoId" class="form-control" asp-items="ViewBag.ModLicitacaoId">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="ModLicitacaoId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="Valor" class="control-label"></label>
-                        <input asp-for="Valor" class="form-control" />
+                        <input asp-for="Valor" class="form-control"/>
                         <span asp-validation-for="Valor" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="UgCodigoId" class="control-label"></label>
-                        <select asp-for="UgCodigoId" class="form-control" asp-items="ViewBag.UgCodigoId"></select>
+                        <select asp-for="UgCodigoId" class="form-control" asp-items="ViewBag.UgCodigoId">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="UgCodigoId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="UgDpId" class="control-label"></label>
-                        <select asp-for="UgDpId" class="form-control" asp-items="ViewBag.UgDpId"></select>
+                        <select asp-for="UgDpId" class="form-control" asp-items="ViewBag.UgDpId">
+                            <option value="">Selecione</option>
+                        </select>
+                        <span asp-validation-for="UgDpId" class="text-danger"></span>
                     </div>
                 </div>
 

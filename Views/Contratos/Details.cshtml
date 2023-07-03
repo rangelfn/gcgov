@@ -1,102 +1,84 @@
 ﻿@model GCGov.Models.Contrato
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Contrato";
 }
 
-<h1>Details</h1>
+<div class="card">
+            <div class="card-header"><h4>Detalhes do Contrato</h4></div>
+ <div class="card-body">
+     <div class="row">
+        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <dt class="col-sm-12">Extrato</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.Extrato)</dd>
+                <hr/>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.Contratante)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.Contratante)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.Contratada)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.Contratada)</dd>
+            </div>
+            <div class="col-md-12">
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.Objeto)</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.Objeto)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.Vigencia)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.Vigencia)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.DataInicio)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.DataInicio)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.ProcessoSei)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.ProcessoSei)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.DataAssinatura)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.DataAssinatura)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.LinkPublico)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.LinkPublico)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.ProtocoloDiof)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.ProtocoloDiof)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.Valor)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.Valor)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.ModLicitacao)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.ModLicitacao.ModNome)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.UgCodigo)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.UgCodigo.UgNome)</dd>
+            </div>
+            <div class="col-md-6">
+                <dt class="col-sm-6">@Html.DisplayNameFor(model => model.UgDp)</dt>
+                <dd class="col-sm-6">@Html.DisplayFor(model => model.UgDp.UgDpNome)</dd>
+            </div>
+        <hr />
+    </div>
+</div>
 
-<div>
-    <h4>Contrato</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Extrato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Extrato)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contratante)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contratante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contratada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contratada)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Objeto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Objeto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vigencia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vigencia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataInicio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProcessoSei)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProcessoSei)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LinkPublico)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LinkPublico)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataAssinatura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataAssinatura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProtocoloDiof)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProtocoloDiof)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModLicitacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModLicitacao.ModLicitacaoId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UgCodigo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UgCodigo.UgCodigoId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UgDp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UgDp.UgDpId)
-        </dd>
-    </dl>
+        <div>
+            <a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.ContratoId" title="Editar">
+                <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar</a>
+            <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+            </a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ContratoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+

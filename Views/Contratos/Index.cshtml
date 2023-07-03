@@ -37,8 +37,8 @@
             <td>@Html.DisplayFor(modelItem => item.ProcessoSei)</td>
             <td>@Html.DisplayFor(modelItem => item.ProtocoloDiof)</td>
             <td>@Html.DisplayFor(modelItem => item.Valor)</td>
-            <td>@Html.DisplayFor(modelItem => item.ModLicitacao.ModNome)</td>
-            <td>@Html.DisplayFor(modelItem => item.UgCodigo.UgNome)</td>
+            <td>@(item.ModLicitacao != null ? Html.DisplayFor(modelItem => item.ModLicitacao.ModNome) : null)</td>
+            <td>@(item.UgCodigo != null ? Html.DisplayFor(modelItem => item.UgCodigo.UgNome) : null)</td>
             <td>
               <div class="btn-group" role="group" aria-label="Operações">
                   <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.ContratoId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>

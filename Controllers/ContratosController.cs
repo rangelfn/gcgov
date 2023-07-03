@@ -18,41 +18,26 @@ namespace GCGov.Controllers
             _context = context;
         }
 
-        // Método auxiliar para obter as listas necessárias
-        private async Task PopulateSelectListsAsync()
-        {
-            var modLicitacoes = await _context.ModLicitacoes.Select(m => new { m.ModLicitacaoId, m.ModNome }).ToListAsync();
-            var unidadesGestoras = await _context.UnidadesGestoras.Select(u => new { u.UgCodigoId, u.UgNome }).ToListAsync();
-            var ugDepartamentos = await _context.UgDepartamentos.Select(d => new { d.UgDpId, d.UgDpNome }).ToListAsync();
-
-            ViewData["ModLicitacaoId"] = new SelectList(modLicitacoes, "ModLicitacaoId", "ModNome");
-            ViewData["UgCodigoId"] = new SelectList(unidadesGestoras, "UgCodigoId", "UgNome");
-            ViewData["UgDpId"] = new SelectList(ugDepartamentos, "UgDpId", "UgDpNome");
-        }
         // GET: Contratos
         public async Task<IActionResult> Index()
         {
-            var gestorContratosContext = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp);
-            await PopulateSelectListsAsync();
+            var gestorContratosContext = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo)
+.Include(c => c.UgDp);
+
             return View(await gestorContratosContext.ToListAsync());
         }
 
         // GET: Contratos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null || _context.Contratos == null)
-            {
-                return NotFound();
-            }
-
-            var contrato = await _context.Contratos.FindAsync(id);
+            var contrato = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp)
+                .FirstOrDefault(c => c.ContratoId == id);
 
             if (contrato == null)
             {
                 return NotFound();
             }
 
-            await PopulateSelectListsAsync();
             return View(contrato);
         }
 
@@ -76,11 +61,11 @@ namespace GCGov.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            await PopulateSelectListsAsync();
+
             return View(contrato);
         }
 
-        // GET: Contratos/Edit/ID
+        // GET: Contratos/Edit/id
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Contratos == null)
@@ -88,18 +73,26 @@ namespace GCGov.Controllers
                 return NotFound();
             }
 
-            var contrato = await _context.Contratos.FindAsync(id);
+            var contrato = await _context.Contratos
+                .Include(c => c.ModLicitacao)
+                .Include(c => c.UgCodigo)
+                .Include(c => c.UgDp)
+                .FirstOrDefaultAsync(c => c.ContratoId == id);
+
             if (contrato == null)
             {
                 return NotFound();
             }
-            await PopulateSelectListsAsync();
+
+            // Recuperar as listas de opções para os campos de seleção
+            ViewData["ModLicitacaoId"] = new SelectList(_context.ModLicitacoes, "ModLicitacaoId", "ModNome", contrato.ModLicitacaoId);
+            ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
+            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
+
             return View(contrato);
         }
 
-        // POST: Contratos/Edit/ID
-
-
+        // POST: Contratos/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ContratoId,Extrato,Contratante,Contratada,Objeto,Vigencia,DataInicio,ProcessoSei,LinkPublico,DataAssinatura,ProtocoloDiof,ModLicitacaoId,Valor,UgCodigoId,UgDpId")] Contrato contrato)
@@ -130,11 +123,16 @@ namespace GCGov.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            await PopulateSelectListsAsync();
+            // Recuperar as listas de opções para os campos de seleção
+            ViewData["ModLicitacaoId"] = new SelectList(_context.ModLicitacoes, "ModLicitacaoId", "ModNome", contrato.ModLicitacaoId);
+            ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
+            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
+
             return View(contrato);
         }
 
-        // GET: Contratos/Delete/ID
+
+        // GET: Contratos/Delete/id
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Contratos == null)
@@ -143,17 +141,20 @@ namespace GCGov.Controllers
             }
 
             var contrato = await _context.Contratos
-                .Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp)
+                .Include(c => c.ModLicitacao)
+                .Include(c => c.UgCodigo)
+                .Include(c => c.UgDp)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);
+
             if (contrato == null)
             {
                 return NotFound();
             }
-            await PopulateSelectListsAsync();
+
             return View(contrato);
         }
 
-        // POST: Contratos/Delete/ID
+        // POST: Contratos/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -162,14 +163,18 @@ namespace GCGov.Controllers
             {
                 return Problem("O Conjunto de entidades 'GestorContratosContext.Contratos' é nulo.");
             }
+
             var contrato = await _context.Contratos.FindAsync(id);
+
             if (contrato != null)
             {
                 _context.Contratos.Remove(contrato);
             }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool ContratoExists(int id)
         {
             return (_context.Contratos?.Any(e => e.ContratoId == id)).GetValueOrDefault();
