@@ -43,6 +43,11 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.PortariaId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.PortariaId" class="btn btn-labeled btn-secondary" title="Editar">
+        <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar
+    </a>
+
+    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+    </a>
 </div>

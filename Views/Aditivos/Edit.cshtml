@@ -38,15 +38,17 @@
                 <select asp-for="ContratoId" class="form-control" asp-items="ViewBag.ContratoId"></select>
                 <span asp-validation-for="ContratoId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            <button type="submit" class="btn btn-labeled btn-success" title="Salvar">
+                <span class="btn-label"><i class="fa-solid fa-check"></i></span>Salvar
+            </button>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+    </a>
 </div>
 
 @section Scripts {

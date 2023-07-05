@@ -46,6 +46,8 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="PgtoTipoId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+            <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+        </a>
     </form>
 </div>

@@ -5,7 +5,7 @@
 }
 
 <div class="card">
-            <div class="card-header"><h4>Detalhes do Contrato</h4></div>
+    <div class="card-header"><h4>Detalhes do Contrato</h4></div>
  <div class="card-body">
      <div class="row">
         <div class="col-md-12">
@@ -67,10 +67,9 @@
                 <dt class="col-sm-6">@Html.DisplayNameFor(model => model.UgDp)</dt>
                 <dd class="col-sm-6">@Html.DisplayFor(model => model.UgDp.UgDpNome)</dd>
             </div>
-        <hr />
+            <hr />
+        </div>
     </div>
-</div>
-
         <div>
             <a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.ContratoId" title="Editar">
                 <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar</a>
