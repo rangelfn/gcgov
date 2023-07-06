@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
 
 namespace GCGov.Models
 {
@@ -13,13 +10,13 @@ namespace GCGov.Models
         public string AdtNum { get; set; } = null!;
 
         [DisplayName("Descrição")]
-        public string Descricao { get; set; } = null!;
+        public string AdtDesc { get; set; } = null!;
 
         [DisplayName("Data do Aditivo")]
         public DateTime? AdtData { get; set; }
 
         [DisplayName("Valor")]
-        public decimal Valor { get; set; }
+        public decimal AdtValor { get; set; }
 
         [DisplayName("Extrato do Contrato")]
         public int? ContratoId { get; set; }

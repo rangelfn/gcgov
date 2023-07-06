@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GCGov.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -17,6 +17,7 @@ namespace GCGov.Controllers
         // GET: Editais
         public async Task<IActionResult> Index()
         {
+            
             var gestorContratosContext = _context.Editais.Include(e => e.Contrato);
             return View(await gestorContratosContext.ToListAsync());
         }
@@ -43,12 +44,12 @@ namespace GCGov.Controllers
         // GET: Editais/Create
         public IActionResult Create()
         {
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId");
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato");
+            ViewBag.Contratos = new SelectList(_context.Contratos, "ContratoId", "Extrato");
             return View();
         }
 
         // POST: Editais/Create
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -60,8 +61,10 @@ namespace GCGov.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", edital.ContratoId);
-            return View(edital);
+
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato", edital.ContratoId);
+            ViewBag.Contratos = new SelectList(_context.Contratos, "ContratoId", "Extrato");
+            return View(edital); 
         }
 
         // GET: Editais/Edit/5
@@ -77,12 +80,12 @@ namespace GCGov.Controllers
             {
                 return NotFound();
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", edital.ContratoId);
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato", edital.ContratoId);
             return View(edital);
+
         }
 
         // POST: Editais/Edit/5
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -113,7 +116,7 @@ namespace GCGov.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", edital.ContratoId);
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato", edital.ContratoId);
             return View(edital);
         }
 
@@ -150,14 +153,14 @@ namespace GCGov.Controllers
             {
                 _context.Editais.Remove(edital);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EditalExists(int id)
         {
-          return (_context.Editais?.Any(e => e.EdtId == id)).GetValueOrDefault();
+            return (_context.Editais?.Any(e => e.EdtId == id)).GetValueOrDefault();
         }
     }
 }

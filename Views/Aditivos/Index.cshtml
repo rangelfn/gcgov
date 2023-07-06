@@ -4,7 +4,7 @@
     ViewData["Title"] = "Listagem de Aditivos";
 }
 
-<h1>Listagem de Aditivos</h1>
+<h4>Lista de Aditivos</h4>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
@@ -26,9 +26,9 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.AdtNum)</td>
-                <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdtDesc)</td>
                 <td>@Html.DisplayFor(modelItem => item.AdtData)</td>
-                <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td>@Html.DisplayFor(modelItem => item.AdtValor)</td>
                 <td>@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Operações">

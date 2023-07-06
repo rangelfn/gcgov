@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -21,9 +16,9 @@ namespace GCGov.Controllers
         // GET: ModLicitacoes
         public async Task<IActionResult> Index()
         {
-              return _context.ModLicitacoes != null ? 
-                          View(await _context.ModLicitacoes.ToListAsync()) :
-                          Problem("Entity set 'GCGovContext.ModLicitacoes'  is null.");
+            return _context.ModLicitacoes != null ?
+                        View(await _context.ModLicitacoes.ToListAsync()) :
+                        Problem("Entity set 'GCGovContext.ModLicitacoes'  is null.");
         }
 
         // GET: ModLicitacoes/Details/5
@@ -149,14 +144,14 @@ namespace GCGov.Controllers
             {
                 _context.ModLicitacoes.Remove(modLicitacao);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ModLicitacaoExists(int id)
         {
-          return (_context.ModLicitacoes?.Any(e => e.ModLicitacaoId == id)).GetValueOrDefault();
+            return (_context.ModLicitacoes?.Any(e => e.ModLicitacaoId == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -21,9 +16,9 @@ namespace GCGov.Controllers
         // GET: PgtosModalidades
         public async Task<IActionResult> Index()
         {
-              return _context.PgtosModalidades != null ? 
-                          View(await _context.PgtosModalidades.ToListAsync()) :
-                          Problem("Entity set 'GCGovContext.PgtosModalidades'  is null.");
+            return _context.PgtosModalidades != null ?
+                        View(await _context.PgtosModalidades.ToListAsync()) :
+                        Problem("Entity set 'GCGovContext.PgtosModalidades'  is null.");
         }
 
         // GET: PgtosModalidades/Details/5
@@ -149,14 +144,14 @@ namespace GCGov.Controllers
             {
                 _context.PgtosModalidades.Remove(pgtosModalidade);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PgtosModalidadeExists(int id)
         {
-          return (_context.PgtosModalidades?.Any(e => e.PgtoModId == id)).GetValueOrDefault();
+            return (_context.PgtosModalidades?.Any(e => e.PgtoModId == id)).GetValueOrDefault();
         }
     }
 }

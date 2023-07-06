@@ -27,7 +27,7 @@
                         <i class="fas fa-calendar fa-2x"></i>
                     </div><div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1">
-                            Valor Total Contratado
+                            Valor Total Empenhado
                         </div>
                         <div class="h5 mb-0 font-weight-bold">R$17.405.400,00</div>
                     </div>
@@ -43,9 +43,9 @@
                         <i class="fas fa-calendar fa-2x"></i>
                     </div><div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1">
-                            Valor Total Contratado
+                            Valor Total a Pagar
                         </div>
-                        <div class="h5 mb-0 font-weight-bold">R$17.405.400,00</div>
+                        <div class="h5 mb-0 font-weight-bold">R$10.000.000,00</div>
                     </div>
                 </div>
             </div>
@@ -59,16 +59,15 @@
                         <i class="fas fa-calendar fa-2x"></i>
                     </div><div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1">
-                            Valor Total Contratado
+                            Valor Total Pago
                         </div>
-                        <div class="h5 mb-0 font-weight-bold">R$17.405.400,00</div>
+                        <div class="h5 mb-0 font-weight-bold">R$7.405.400,00</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-xl-8">
@@ -80,59 +79,7 @@
                 <div>
                     <canvas id="bar"></canvas>
                 </div>
-
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                <script>
-                    const bar = document.getElementById('bar');
-
-                    new Chart(bar, {
-                        type: 'bar',
-                        data: {
-                            labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET','OUT', 'NOV', 'DEZ'],
-                            datasets: [{
-                                label: '#Contratos',
-                                data: [12, 19, 3, 5, 2, 3, 7, 0, 0, 0, 0, 0],
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(255, 205, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(255, 159, 64)',
-                                    'rgb(255, 205, 86)',
-                                    'rgb(75, 192, 192)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(153, 102, 255)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)',
-                                    'rgb(201, 203, 207)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
+                <script src="~/js/chartjs/chartjsBar.js" asp-append-version="true"></script>
             </div>
         </div>
     </div>
@@ -147,38 +94,8 @@
                     <canvas id="doughnut"></canvas>
                 </div>
 
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                <script>
-                    const polarArea = document.getElementById('doughnut');
-
-                    new Chart(doughnut, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Obras', 'Servicos', 'Manutenção', 'Outros'],
-                            datasets: [{
-                                label: 'Segmentos',
-                                data: [300, 50, 100, 30],
-                                backgroundColor: [
-                                    'rgb(255, 99, 132)',
-                                    'rgb(54, 162, 235)',
-                                    'rgb(17, 68, 85)',
-                                    'rgb(255, 205, 86)'
-                                ],
-                                hoverOffset: 4
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
+                <script src="~/js/chartjs/chartjsDoughnut.js" asp-append-version="true"></script>
             </div>
         </div>
     </div>
 </div>
-

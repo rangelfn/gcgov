@@ -1,8 +1,5 @@
 using GCGov.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 

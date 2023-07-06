@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h4>Lista de Apostilamentos</h4>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
@@ -13,42 +13,22 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AptNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AptDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AptData)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contrato)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.AptNum)</th>
+            <th>@Html.DisplayNameFor(model => model.AptDesc)</th>
+            <th>@Html.DisplayNameFor(model => model.AptData)</th>
+            <th>@Html.DisplayNameFor(model => model.AptValor)</th>
+            <th>@Html.DisplayNameFor(model => model.Contrato)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AptNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AptDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AptData)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contrato.ContratoId)
-            </td>
+            <td>@Html.DisplayFor(modelItem => item.AptNum)</td>
+            <td>@Html.DisplayFor(modelItem => item.AptDesc)</td>
+            <td>@Html.DisplayFor(modelItem => item.AptData)</td>
+            <td>@Html.DisplayFor(modelItem => item.AptValor)</td>
+            <td>@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
             <td>
                 <a asp-action="Details" class="btn btn-success" asp-route-id="@item.AptId"  title="Ver Detalhes"><i class="fas fa-file-alt"></i></a>
                 <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.AptId" title="Editar"><i class="fas fa-pen-square"></i></a>

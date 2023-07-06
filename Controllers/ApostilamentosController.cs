@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GCGov.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -17,8 +17,8 @@ namespace GCGov.Controllers
         // GET: Apostilamentos
         public async Task<IActionResult> Index()
         {
-            var GCGovContext = _context.Apostilamentos.Include(a => a.Contrato);
-            return View(await GCGovContext.ToListAsync());
+            var apostilamentos = await _context.Apostilamentos.Include(a => a.Contrato).ToListAsync();
+            return View(apostilamentos); 
         }
 
         // GET: Apostilamentos/Details/5
@@ -43,7 +43,9 @@ namespace GCGov.Controllers
         // GET: Apostilamentos/Create
         public IActionResult Create()
         {
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId");
+
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato");
+            ViewBag.Contratos = new SelectList(_context.Contratos, "ContratoId", "Extrato");
             return View();
         }
 
@@ -51,7 +53,7 @@ namespace GCGov.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AptId,AptNum,AptDesc,AptData,Valor,ContratoId")] Apostilamento apostilamento)
+        public async Task<IActionResult> Create([Bind("AptId,AptNum,AptDesc,AptData,AptValor,ContratoId")] Apostilamento apostilamento)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,7 @@ namespace GCGov.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", apostilamento.ContratoId);
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato", apostilamento.ContratoId);
             return View(apostilamento);
         }
 
@@ -76,7 +78,7 @@ namespace GCGov.Controllers
             {
                 return NotFound();
             }
-            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "ContratoId", apostilamento.ContratoId);
+            ViewData["ContratoId"] = new SelectList(_context.Contratos, "ContratoId", "Extrato", apostilamento.ContratoId);
             return View(apostilamento);
         }
 
@@ -84,7 +86,7 @@ namespace GCGov.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AptId,AptNum,AptDesc,AptData,Valor,ContratoId")] Apostilamento apostilamento)
+        public async Task<IActionResult> Edit(int id, [Bind("AptId,AptNum,AptDesc,AptData,AptValor,ContratoId")] Apostilamento apostilamento)
         {
             if (id != apostilamento.AptId)
             {
@@ -148,13 +150,14 @@ namespace GCGov.Controllers
             {
                 _context.Apostilamentos.Remove(apostilamento);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool ApostilamentoExists(int id)
         {
-          return (_context.Apostilamentos?.Any(e => e.AptId == id)).GetValueOrDefault();
+            return (_context.Apostilamentos?.Any(e => e.AptId == id)).GetValueOrDefault();
         }
     }
 }

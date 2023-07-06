@@ -11,35 +11,19 @@
     <h4>Aditivo</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdtNum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdtNum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AdtData)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AdtData)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.AdtNum)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.AdtNum)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.AdtDesc)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.AdtDesc)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.AdtData)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.AdtData)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.AdtValor)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.AdtValor)</dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Contrato)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contrato.ContratoId)
+            @Html.DisplayFor(model => model.Contrato.ContratoId)        
         </dd>
     </dl>
     

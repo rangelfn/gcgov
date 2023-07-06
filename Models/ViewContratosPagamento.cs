@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace GCGov.Models;
 
-namespace GCGov.Models;
 public partial class ViewContratosPagamento
 {
     public int? UgCodigoId { get; set; }

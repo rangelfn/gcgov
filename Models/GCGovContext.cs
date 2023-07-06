@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace GCGov.Models;
+
 public partial class GCGovContext : DbContext
 {
     public GCGovContext()
     {
     }
+
     public GCGovContext(DbContextOptions<GCGovContext> options)
         : base(options)
     {
     }
+
     public virtual DbSet<Aditivo> Aditivos { get; set; }
     public virtual DbSet<Apostilamento> Apostilamentos { get; set; }
     public virtual DbSet<Auditoria> Auditorias { get; set; }
     public virtual DbSet<Contrato> Contratos { get; set; }
-    public virtual DbSet<ViewDespesasPorContrato> DespesasPorContratos { get; set; }
     public virtual DbSet<DotacaoOrcamentaria> DotacaoOrcamentarias { get; set; }
     public virtual DbSet<Edital> Editais { get; set; }
     public virtual DbSet<ModLicitacao> ModLicitacoes { get; set; }
@@ -32,6 +32,7 @@ public partial class GCGovContext : DbContext
     public virtual DbSet<UnidadesGestora> UnidadesGestoras { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<ViewContratosPagamento> ViewContratosPagamentos { get; set; }
+    public virtual DbSet<ViewDespesasPorContrato> DespesasPorContratos { get; set; }
     public virtual DbSet<ViewEditaisPorContrato> ViewEditaisPorContratos { get; set; }
     public virtual DbSet<ViewPagamentosTotalPorContrato> ViewPagamentosTotalPorContratos { get; set; }
     public virtual DbSet<ViewPortariasPorContrato> VwPortariasPorContratos { get; set; }
@@ -48,6 +49,7 @@ public partial class GCGovContext : DbContext
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         }
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Aditivo>(entity =>
@@ -57,8 +59,8 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.AdtData).HasColumnType("date");
             entity.Property(e => e.AdtNum).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
-            entity.Property(e => e.Descricao).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.AdtDesc).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.AdtValor).HasColumnType("decimal(10, 2)");
             entity.HasOne(d => d.Contrato).WithMany(p => p.Aditivos)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Aditivos__Contra__0C1BC9F9");
@@ -72,7 +74,7 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.AptDesc).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.AptNum).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
-            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.AptValor).HasColumnType("decimal(10, 2)");
             entity.HasOne(d => d.Contrato).WithMany(p => p.Apostilamentos)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Apostilam__Contr__0EF836A4");
@@ -176,21 +178,6 @@ public partial class GCGovContext : DbContext
             entity.HasOne(d => d.PgtoTipo).WithMany(p => p.Pagamentos)
                 .HasForeignKey(d => d.PgtoTipoId).OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Pagamento__PgtoT__1A69E950");
-        });
-
-        modelBuilder.Entity<ViewPessoasPorContrato>(entity =>
-        {
-            entity.HasNoKey().ToView("PessoasPorContratos");
-            entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Funcao).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Matricula).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.ModId).HasColumnName("ModID");
-            entity.Property(e => e.Nome).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
-            entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.Tipo).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
-            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
         });
 
         modelBuilder.Entity<PgtosModalidade>(entity =>
@@ -327,6 +314,24 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.ValorPagamento).HasColumnType("decimal(10, 2)");
         });
 
+        modelBuilder.Entity<ViewContratosPagamento>(entity =>
+        {
+            entity.HasNoKey().ToView("ViewContratosPagamentos");
+            entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.DataPagamento).HasColumnType("date");
+            entity.Property(e => e.ModId).HasColumnName("ModID");
+            entity.Property(e => e.NotaEmpenho).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.NotaLancamento).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
+            entity.Property(e => e.OrdemBancaria).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.PgtoModalidade).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.PreparacaoPagamento).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
+            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.ValorPagamento).HasColumnType("decimal(10, 2)");
+        });
+
         modelBuilder.Entity<ViewEditaisPorContrato>(entity =>
         {
             entity.HasNoKey().ToView("ViewEditaisPorContratos");
@@ -354,6 +359,21 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.ValorTotalPagamentos).HasColumnType("decimal(38, 2)");
         });
 
+        modelBuilder.Entity<ViewPessoasPorContrato>(entity =>
+        {
+            entity.HasNoKey().ToView("PessoasPorContratos");
+            entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.Funcao).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.Matricula).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.ModId).HasColumnName("ModID");
+            entity.Property(e => e.Nome).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
+            entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.Tipo).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
+            entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+        });
+
         modelBuilder.Entity<ViewPortariasPorContrato>(entity =>
         {
             entity.HasNoKey().ToView("ViewPortariasPorContratos");
@@ -370,5 +390,6 @@ public partial class GCGovContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -166,14 +162,14 @@ namespace GCGov.Controllers
             {
                 _context.PgtosTipos.Remove(pgtosTipo);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PgtosTipoExists(int id)
         {
-          return (_context.PgtosTipos?.Any(e => e.PgtoTipoId == id)).GetValueOrDefault();
+            return (_context.PgtosTipos?.Any(e => e.PgtoTipoId == id)).GetValueOrDefault();
         }
     }
 }

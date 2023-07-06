@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace GCGov.Models;
 
-namespace GCGov.Models;
 public partial class UgDepartamento
 {
     public int UgDpId { get; set; }

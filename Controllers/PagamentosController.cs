@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -154,14 +150,14 @@ namespace GCGov.Controllers
             {
                 _context.Pagamentos.Remove(pagamento);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PagamentoExists(int id)
         {
-          return (_context.Pagamentos?.Any(e => e.PgtoId == id)).GetValueOrDefault();
+            return (_context.Pagamentos?.Any(e => e.PgtoId == id)).GetValueOrDefault();
         }
     }
 }

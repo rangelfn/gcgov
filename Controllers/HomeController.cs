@@ -22,66 +22,67 @@ namespace GCGov.Controllers
         {
             return View();
         }
+
         public IActionResult Aditivos()
         {
             return RedirectToAction("Index", "Aditivos");
-
         }
+
         public IActionResult Apostilamentos()
         {
             return RedirectToAction("Index", "Apostilamentos");
-
         }
+
         public IActionResult Contratos()
         {
             return RedirectToAction("Index", "Contratos");
-
         }
-        public IActionResult DespesasOrcamentarias()
+
+        public IActionResult DotacoesOrcamentarias()
         {
-            return RedirectToAction("Index", "DespesasOrcamentarias");
-
+            return RedirectToAction("Index", "DotacoesOrcamentarias");
         }
+
         public IActionResult Editais()
         {
             return RedirectToAction("Index", "Editais");
-
         }
+
         public IActionResult Pagamentos()
         {
             return RedirectToAction("Index", "Pagamentos");
-
         }
+
         public IActionResult PagamentosTipos()
         {
-            return RedirectToAction("Index", "PagamentosTipos");
-
+            return RedirectToAction("Index", "PgtosTipos");
         }
+
         public IActionResult Pessoas()
         {
             return RedirectToAction("Index", "Pessoas");
-
         }
+
         public IActionResult PessoasPortarias()
         {
-            return RedirectToAction("Index", "PessoasPortarias");
-
+            return RedirectToAction("Index", "PortariasServidores");
         }
+
         public IActionResult Portarias()
         {
             return RedirectToAction("Index", "Portarias");
-
         }
+
         public IActionResult UsuariosContratos()
         {
             return RedirectToAction("Index", "UsuariosContratos");
-
         }
+
         public IActionResult Usuarios()
         {
             return RedirectToAction("Index", "Usuarios");
-
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

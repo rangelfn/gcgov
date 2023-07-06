@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GCGov.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -16,9 +16,9 @@ namespace GCGov.Controllers
         // GET: DotacoesOrcamentarias
         public async Task<IActionResult> Index()
         {
-              return _context.DotacaoOrcamentarias != null ? 
-                          View(await _context.DotacaoOrcamentarias.ToListAsync()) :
-                          Problem("Entity set 'GCGovContext.DotacaoOrcamentarias'  is null.");
+            return _context.DotacaoOrcamentarias != null ?
+                        View(await _context.DotacaoOrcamentarias.ToListAsync()) :
+                        Problem("Entity set 'GCGovContext.DotacaoOrcamentarias'  is null.");
         }
 
         // GET: DotacoesOrcamentarias/Details/5
@@ -46,7 +46,6 @@ namespace GCGov.Controllers
         }
 
         // POST: DotacoesOrcamentarias/Create
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,7 +77,6 @@ namespace GCGov.Controllers
         }
 
         // POST: DotacoesOrcamentarias/Edit/5
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -144,14 +142,14 @@ namespace GCGov.Controllers
             {
                 _context.DotacaoOrcamentarias.Remove(dotacaoOrcamentaria);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DotacaoOrcamentariaExists(int id)
         {
-          return (_context.DotacaoOrcamentarias?.Any(e => e.NaturezaDespesa == id)).GetValueOrDefault();
+            return (_context.DotacaoOrcamentarias?.Any(e => e.NaturezaDespesa == id)).GetValueOrDefault();
         }
     }
 }

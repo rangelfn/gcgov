@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace GCGov.Controllers
 {
@@ -21,8 +17,7 @@ namespace GCGov.Controllers
         // GET: Contratos
         public async Task<IActionResult> Index()
         {
-            var gestorContratosContext = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo)
-.Include(c => c.UgDp);
+            var gestorContratosContext = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp);
 
             return View(await gestorContratosContext.ToListAsync());
         }
@@ -130,7 +125,6 @@ namespace GCGov.Controllers
 
             return View(contrato);
         }
-
 
         // GET: Contratos/Delete/id
         public async Task<IActionResult> Delete(int? id)

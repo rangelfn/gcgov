@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GCGOV-RO</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/chart.js/chart.min.js" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/datatables.net/jquery.dataTables.min.js"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GCGov.styles.css" asp-append-version="true" />
-  
+    <script src="~/lib/chartjs/chart.umd.js"></script>
 </head>
 <body>
     <header>
@@ -52,21 +50,22 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
-                                Pagamentos
+                                Financeiro
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Index", "Pagamentos")" class="dropdown-item">Listar</a></li>
-                                <li><a href="@Url.Action("Create", "Pagamentos")" class="dropdown-item">Cadastrar</a></li>
+                                <li><a href="@Url.Action("Index", "DotacoesOrcamentarias")" class="dropdown-item">Dotação Orçamentária</a></li>
+                                <li><a href="@Url.Action("Index", "PgtosTipos")" class="dropdown-item">Nota Empenho</a></li>
+                                <li><a href="@Url.Action("Index", "Pagamentos")" class="dropdown-item">Pagamentos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-regular fa-newspaper"></i>
-                                Portarias
+                                Gestores
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Index", "Portarias")" class="dropdown-item">Listar</a></li>
-                                <li><a href="@Url.Action("Create", "Portarias")" class="dropdown-item">Cadastrar</a></li>
+                                <li><a href="@Url.Action("Index", "Portarias")" class="dropdown-item">Portarias</a></li>
+                                <li><a href="@Url.Action("Index", "Pessoas")" class="dropdown-item">Gestores</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -123,8 +122,6 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/Chart.js/chart.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

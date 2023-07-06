@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GCGov.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GCGov.Models;
 
 namespace gcgov.Controllers
 {
@@ -33,8 +29,7 @@ namespace gcgov.Controllers
                 return NotFound();
             }
 
-            var aditivo = await _context.Aditivos
-                .Include(a => a.Contrato)
+            var aditivo = await _context.Aditivos.Include(a => a.Contrato)
                 .FirstOrDefaultAsync(m => m.AdtId == id);
             if (aditivo == null)
             {
@@ -54,7 +49,7 @@ namespace gcgov.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AdtId,AdtNum,Descricao,AdtData,Valor,ContratoId")] Aditivo aditivo)
+        public async Task<IActionResult> Create([Bind("AdtId,AdtNum,AdtDesc,AdtData,Valor,ContratoId")] Aditivo aditivo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +83,7 @@ namespace gcgov.Controllers
         // POST: Aditivos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AdtId,AdtNum,Descricao,AdtData,Valor,ContratoId")] Aditivo aditivo)
+        public async Task<IActionResult> Edit(int id, [Bind("AdtId,AdtNum,AdtDesc,AdtData,AdtValor,ContratoId")] Aditivo aditivo)
         {
             if (id != aditivo.AdtId)
             {
@@ -146,7 +141,7 @@ namespace gcgov.Controllers
             var aditivo = await _context.Aditivos.FindAsync(id);
             if (aditivo == null)
             {
-                return NotFound();
+                return Problem("Entity set 'GestorContratosContext.Editais'  is null.");
             }
 
             _context.Aditivos.Remove(aditivo);
