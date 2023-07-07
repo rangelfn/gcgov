@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace gcgov.Controllers
 {
@@ -130,8 +131,9 @@ namespace gcgov.Controllers
                 return NotFound();
             }
 
-            return View(aditivo);
+            return PartialView("_Delete", aditivo);
         }
+
 
         // POST: Aditivos/Delete/5
         [HttpPost, ActionName("Delete")]

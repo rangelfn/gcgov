@@ -52,9 +52,12 @@ public partial class GCGovContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
         modelBuilder.Entity<Aditivo>(entity =>
         {
+         
             entity.HasKey(e => e.AdtId).HasName("PK__Aditivos__46EAF0F7B596C7A5");
+            entity.HasIndex(e => e.AdtNum, "UC_AdtNum").IsUnique();
             entity.Property(e => e.AdtId).HasColumnName("AdtID");
             entity.Property(e => e.AdtData).HasColumnType("date");
             entity.Property(e => e.AdtNum).HasMaxLength(255).IsUnicode(false);
@@ -69,6 +72,7 @@ public partial class GCGovContext : DbContext
         modelBuilder.Entity<Apostilamento>(entity =>
         {
             entity.HasKey(e => e.AptId).HasName("PK__Apostila__8D24E752F4E26126");
+            entity.HasIndex(e => e.AptNum, "UC_AptNum").IsUnique();
             entity.Property(e => e.AptId).HasColumnName("AptID");
             entity.Property(e => e.AptData).HasColumnType("date");
             entity.Property(e => e.AptDesc).HasMaxLength(255).IsUnicode(false);
@@ -96,6 +100,7 @@ public partial class GCGovContext : DbContext
         modelBuilder.Entity<Contrato>(entity =>
         {
             entity.HasKey(e => e.ContratoId).HasName("PK__Contrato__B238E953E80E5665");
+            entity.HasIndex(e => e.Extrato, "UC_Extrato").IsUnique();
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.Contratante).HasMaxLength(255).IsUnicode(false);
@@ -145,6 +150,7 @@ public partial class GCGovContext : DbContext
         modelBuilder.Entity<Edital>(entity =>
         {
             entity.HasKey(e => e.EdtId).HasName("PK__Editais__1E817285C0807669");
+            entity.HasIndex(e => e.EdtNum, "UC_EdtNum").IsUnique();
             entity.Property(e => e.EdtId).HasColumnName("EdtID");
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.EdtData).HasColumnType("date");
@@ -167,6 +173,7 @@ public partial class GCGovContext : DbContext
         modelBuilder.Entity<Pagamento>(entity =>
         {
             entity.HasKey(e => e.PgtoId).HasName("PK__Pagament__DCC60064C7FA0206");
+            entity.HasIndex(e => e.NotaLancamento, "UC_NotaLancamento").IsUnique();
             entity.Property(e => e.PgtoId).HasColumnName("PgtoID");
             entity.Property(e => e.DataPagamento).HasColumnType("date");
             entity.Property(e => e.NotaLancamento).HasMaxLength(255).IsUnicode(false);

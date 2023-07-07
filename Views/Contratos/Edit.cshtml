@@ -78,15 +78,13 @@
                     </div>
                     <div class="col-md-6">
                         <label asp-for="UgCodigoId" class="control-label"></label>
-                        <select asp-for="UgCodigoId" class="form-control" asp-items="ViewBag.UgCodigoId">
-                            <option value="">Selecione</option>
+                        <select asp-for="UgCodigoId" class="form-control" asp-items="ViewBag.UgCodigoId" disabled>
                         </select>
                         <span asp-validation-for="UgCodigoId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <label asp-for="UgDpId" class="control-label"></label>
-                        <select asp-for="UgDpId" class="form-control" asp-items="ViewBag.UgDpId">
-                            <option value="">Selecione</option>
+                        <select asp-for="UgDpId" class="form-control" asp-items="ViewBag.UgDpId" disabled>
                         </select>
                         <span asp-validation-for="UgDpId" class="text-danger"></span>
                     </div>

@@ -1,12 +1,12 @@
 --------------------------
 --Criando o banco de dados
 --------------------------
-CREATE DATABASE GestorContratos
+CREATE DATABASE GCGov
 
 -----------------------------
 --Selecionando o banco criado
 -----------------------------
-USE GestorContratos
+USE GCGov
 
 --------------------------------------
 -- Criação da tabela Unidades Gestoras
@@ -63,7 +63,7 @@ CREATE TABLE ModLicitacao (
 ------------------------------
 CREATE TABLE Contratos (
   ContratoID INT PRIMARY KEY IDENTITY,
-  Extrato VARCHAR(255) NOT NULL,
+  Extrato VARCHAR(255) UNIQUE NOT NULL,
   Contratante VARCHAR(255) NOT NULL,
   Contratada VARCHAR(255) NOT NULL,
   Objeto VARCHAR(4000) NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE Contratos (
 ----------------------------
 CREATE TABLE Editais (
   EdtID INT PRIMARY KEY IDENTITY,
-  EdtNum VARCHAR(255) NOT NULL,
+  EdtNum VARCHAR(255) UNIQUE NOT NULL,
   EdtTipo VARCHAR(255) NOT NULL,
   EdtLink VARCHAR(255) NOT NULL,
   EdtData DATE NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE Editais (
 -----------------------------
 CREATE TABLE Aditivos (
   AdtID INT PRIMARY KEY IDENTITY,
-  AdtNum VARCHAR(255) NOT NULL,
+  AdtNum VARCHAR(255) UNIQUE NOT NULL,
   Descricao VARCHAR(255) NOT NULL,
   AdtData DATE,
   Valor DECIMAL(10, 2) NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE Aditivos (
 -----------------------------------
 CREATE TABLE Apostilamentos (
   AptID INT PRIMARY KEY IDENTITY,
-  AptNum VARCHAR(255) NOT NULL,
+  AptNum VARCHAR(255) UNIQUE NOT NULL,
   AptDesc VARCHAR(255) NOT NULL,
   AptData DATE,
   Valor DECIMAL(10, 2) NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE PgtosTipos (
 -------------------------------
 CREATE TABLE Pagamentos (
   PgtoID INT PRIMARY KEY IDENTITY,
-  NotaLancamento VARCHAR(255) NOT NULL,
+  NotaLancamento VARCHAR(255) UNIQUE NOT NULL,
   PreparacaoPagamento VARCHAR(255) NOT NULL,
   OrdemBancaria VARCHAR(255) NOT NULL,
   Valor DECIMAL(10, 2) NOT NULL,
@@ -223,11 +223,30 @@ CREATE TABLE Auditorias (
   Depois VARCHAR (4000)
 );
 
---------------------------------------
--- Exportando e Importnado um Diagrama
----------------------------------------
+
 -- Exportar
 !!bcp GestorContratos.dbo.sysdiagrams out c:\tmp\DiagramaGestorContratos.txt -c -T -S .
 
 -- Importar
 !!bcp GestorContratos.dbo.sysdiagrams in c:\tmp\DiagramaGestorContratos.txt -c -T -S .
+
+-----------------------------------------
+-- MODIFICAÇÕES DE ESTRUTURA PARA UNIQUE
+-----------------------------------------
+
+USE GestorContratos
+ALTER TABLE Contratos
+ADD CONSTRAINT UC_Extrato UNIQUE (Extrato);
+
+USE GestorContratos
+ALTER TABLE Aditivos
+ADD CONSTRAINT UC_AdtNum UNIQUE (AdtNum);
+
+ALTER TABLE Editais
+ADD CONSTRAINT UC_EdtNum UNIQUE (EdtNum);
+
+ALTER TABLE Apostilamentos
+ADD CONSTRAINT UC_AptNum UNIQUE (AptNum);
+
+ALTER TABLE Pagamentos
+ADD CONSTRAINT UC_NotaLancamento UNIQUE (NotaLancamento);

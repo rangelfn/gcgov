@@ -113,3 +113,8 @@ body {
         height: calc(20rem - 43px) !important;
     }
 }
+
+.inactive-label {
+    pointer-events: none;
+    color: #808080;
+}
