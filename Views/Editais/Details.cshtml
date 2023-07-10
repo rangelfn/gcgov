@@ -1,50 +1,48 @@
 ﻿@model GCGov.Models.Edital
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Edital";
 }
 
-<h1>Details</h1>
+<div class="card">
+    <div class="card-header"><h4>Detalhes do Edital</h4></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="row">
+                    <div class="col-md-12">
+                        <dt class="col-sm-12">@Html.DisplayNameFor(model => model.Contrato)</dt>
+                        <dd class="col-sm-12">@Html.DisplayFor(model => model.Contrato.Extrato)</dd>
+                        <hr />
+                    </div>
+                    <div class="col-md-12">
+                        <dt class = "col-sm-12">Numero</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.EdtNum)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-12">Tipo</dt>
+                        <dd class="col-sm-12">@Html.DisplayFor(model => model.EdtTipo)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-12">Link</dt>
+                        <dd class="col-sm-12">@Html.DisplayFor(model => model.EdtLink)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-12">Data</dt>
+                        <dd class="col-sm-12">@Html.DisplayFor(model => model.EdtData)</dd>
+                    </div>
+                    <hr />
+                </dl>
+            </div>
+        </div>
 
-<div>
-    <h4>Edital</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EdtNum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EdtNum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EdtTipo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EdtTipo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EdtLink)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EdtLink)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EdtData)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EdtData)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Contrato)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Contrato.ContratoId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.EdtId title="Editar"><i class="fas fa-pen-square mr-2"></i></a>
-    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
-        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
-    </a>
+        <div>
+            <a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.EdtId" title="Editar">
+                <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar
+            </a>
+            <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+            </a>
+        </div>
+    </div>
 </div>

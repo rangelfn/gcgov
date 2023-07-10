@@ -34,7 +34,7 @@
                     <div class="btn-group" role="group" aria-label="Operações">
                         <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.AdtId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
                         <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.AdtId" title="Editar"><i class="fas fa-pen-square"></i></a>
-                        <button class="btn btn-danger delete-button" data-id="@item.AdtId" title="Deletar"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-danger delete-button" data-id="@item.AdtId" data-url="/Aditivos/Delete" title="Deletar"><i class="fas fa-trash"></i></button>
                     </div>
                 </td>
             </tr>
@@ -54,6 +54,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     <script src="~/js/deleteModal.js"></script>
 }

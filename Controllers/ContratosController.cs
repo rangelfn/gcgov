@@ -145,7 +145,7 @@ namespace GCGov.Controllers
                 return NotFound();
             }
 
-            return View(contrato);
+            return PartialView("_Delete", contrato);
         }
 
         // POST: Contratos/Delete/id

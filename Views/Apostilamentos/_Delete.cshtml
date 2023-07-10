@@ -1,0 +1,41 @@
+﻿@model GCGov.Models.Apostilamento
+
+@{
+    ViewData["Title"] = "Deletar Apostilamento";
+}
+
+<div class="row justify-content-center">
+    <h6 class="text-danger">ATENÇÃO! Esta ação não poderá ser desfeita, você tem certeza que deseja excluir o Apostilamento?</h6>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="row">
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.AptNum)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.AptNum)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.AptDesc)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.AptDesc)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.AptData)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.AptData)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.AptValor)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.AptValor)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.Contrato)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Contrato.Extrato)</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <div class="form-group row"></div>
+                <div class="col-md-12">
+                    <div class="mt-3">
+                        <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                            <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+                        </a>
+                        <button type="submit" class="btn btn-labeled btn-danger" title="Deletar">
+                            <span class="btn-label"><i class="fa-solid fa-trash"></i></span>Deletar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

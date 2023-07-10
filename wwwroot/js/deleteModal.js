@@ -1,14 +1,16 @@
 $(document).ready(function () {
     $(".delete-button").on("click", function () {
-        var aditivoId = $(this).attr("data-id");
-        // Define o ID do aditivo no botão de confirmação
-        $("#confirmDelete").attr("data-id", aditivoId); 
+        var dataId = $(this).attr("data-id");
+        var dataUrl = $(this).attr("data-url");
+
+        // Define o ID do botão de confirmação
+        $("#confirmDelete").attr("data-id", dataId);
 
         // Faz uma requisição AJAX para obter o conteúdo do PartialView
         $.ajax({
-            url: "/Aditivos/Delete/" + aditivoId,
+            url: dataUrl + "/" + dataId,
             type: "GET",
-            data: { id: aditivoId },
+            data: { id: dataId },
             success: function (result) {
                 // Preenche o conteúdo do modal com o PartialView
                 $("#deleteModal").find(".modal-body").html(result);
@@ -23,11 +25,12 @@ $(document).ready(function () {
 
     // Evento de clique do botão de confirmação
     $(document).on("click", "#confirmDelete", function () {
-        var aditivoId = $(this).attr("data-id");
+        var dataId = $(this).attr("data-id");
+        var dataUrl = $(this).attr("data-url");
 
         // Faz uma requisição AJAX para deletar o aditivo
         $.ajax({
-            url: "/Aditivos/Delete/" + aditivoId,
+            url: dataUrl + "/" + dataId,
             type: "POST",
             success: function (result) {
                 console.log("uhul");
@@ -36,7 +39,6 @@ $(document).ready(function () {
                 // Lógica de erro ao excluir o aditivo
             }
         });
-
 
         $("#deleteModal").modal("hide"); // Fecha o modal de confirmação
     });

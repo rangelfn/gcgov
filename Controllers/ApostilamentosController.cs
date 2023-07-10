@@ -133,7 +133,7 @@ namespace GCGov.Controllers
                 return NotFound();
             }
 
-            return View(apostilamento);
+            return PartialView("_Delete", apostilamento);
         }
 
         // POST: Apostilamentos/Delete/5

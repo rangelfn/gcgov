@@ -30,11 +30,30 @@
             <td>@Html.DisplayFor(modelItem => item.EdtData)</td>
             <td>@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
             <td>
-                <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.EdtId"  title="Ver Detalhes"><i class="fas fa-file-alt"></i></a>
-                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EdtId" title="Editar"><i class="fas fa-pen-square"></i></a>
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.EdtId" title="Apagar"><i class="fas fa-trash"></i></a>
+                <div class="btn-group" role="group" aria-label="Operações">
+                    <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.EdtId"  title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.EdtId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                    <button class="btn btn-danger delete-button" data-id="@item.EdtId" data-url="/Editais/Delete" title="Deletar"><i class="fas fa-trash"></i></button>
+                </div>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title font-weight-bold" id="deleteModalLabel">Excluir Aditivo</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+        <script src="~/js/deleteModal.js"></script>
+}

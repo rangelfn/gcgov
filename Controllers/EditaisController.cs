@@ -136,7 +136,7 @@ namespace GCGov.Controllers
                 return NotFound();
             }
 
-            return View(edital);
+            return PartialView("_Delete", edital);
         }
 
         // POST: Editais/Delete/5

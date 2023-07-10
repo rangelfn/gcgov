@@ -1,7 +1,7 @@
 ﻿@model GCGov.Models.Aditivo
 
 @{
-	ViewData["Title"] = "Details";
+	ViewData["Title"] = "Detalhes do Aditivo";
 }
 
 <div class="card">
@@ -9,10 +9,10 @@
 	<div class="card-body">
 		<div class="row">
 			<div class="col-md-12">
-			<div class="row">
+			<dl class="row">
 				<div class="col-md-12">
 					<dt class="col-sm-12">@Html.DisplayNameFor(model => model.Contrato)</dt>
-					<dd class="col-sm-12">@Html.DisplayFor(model => model.ContratoId)</dd>
+						<dd class="col-sm-12">@Html.DisplayFor(model => model.Contrato.Extrato)</dd>
 					<hr />
 				</div>
 				<div class="col-md-6">
@@ -31,12 +31,8 @@
 					<dt class="col-sm-6">@Html.DisplayNameFor(model => model.AdtValor)</dt>
 					<dd class="col-sm-6">@Html.DisplayFor(model => model.AdtValor)</dd>
 				</div>
-				<div class="col-md-12">
-					<dt class="col-sm-6">@Html.DisplayNameFor(model => model.Contrato)</dt>
-					<dd class="col-sm-6">@Html.DisplayFor(model => model.ContratoId)</dd>
-				</div>
 				<hr />
-			</div>
+			</dl>
 		</div>
 	</div>
 

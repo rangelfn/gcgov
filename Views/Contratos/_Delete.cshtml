@@ -1,0 +1,48 @@
+﻿@model GCGov.Models.Contrato
+
+@{
+    ViewData["Title"] = "Deletar Contrato";
+}
+
+<div class="row justify-content-center">
+    <h6 class="text-danger">ATENÇÃO! Esta ação não poderá ser desfeita, você tem certeza que deseja excluir esse Contrato?</h6>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="row">
+                <dt class = "col-sm-12">Extrato</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Extrato)</dd>
+                <dt class = "col-sm-12">Contratante</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Contratante)</dd>
+                <dt class = "col-sm-12">Contratada</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Contratada)</dd>
+                <dt class = "col-sm-12">Objeto</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Objeto)</dd>
+                <dt class = "col-sm-12">ProcessoSei</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.ProcessoSei)</dd>
+                <dt class = "col-sm-12">Protocolo Diof</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.ProtocoloDiof)</dd>
+                <dt class = "col-sm-12">ModLicitacao</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.ModLicitacao.ModNome)</dd>
+                <dt class = "col-sm-12">Unidade Gestora</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.UgCodigo.UgNome)</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <div class="form-group row">
+                </div>
+                <div class="col-md-12">
+                    <div class="mt-3">
+                        <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                            <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+                        </a>
+                        <button type="submit" class="btn btn-labeled btn-danger" title="Deletar">
+                            <span class="btn-label"><i class="fa-solid fa-trash"></i></span>Deletar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
