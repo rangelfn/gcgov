@@ -1,21 +1,21 @@
-﻿@model GCGov.Models.DotacaoOrcamentaria
+﻿@model GCGov.Models.NaturezaDespesa
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Adicionar</h1>
+<h1>Create</h1>
 
-<h4>DotacaoOrcamentaria</h4>
+<h4>NaturezaDespesa</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NaturezaDespesa" class="control-label"></label>
-                <input asp-for="NaturezaDespesa" class="form-control" />
-                <span asp-validation-for="NaturezaDespesa" class="text-danger"></span>
+                <label asp-for="NatDespId" class="control-label"></label>
+                <input asp-for="NatDespId" class="form-control" />
+                <span asp-validation-for="NatDespId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FonteRecurso" class="control-label"></label>
@@ -28,6 +28,11 @@
                 <span asp-validation-for="ProgramaTrabalho" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ElementoDespesa" class="control-label"></label>
+                <input asp-for="ElementoDespesa" class="form-control" />
+                <span asp-validation-for="ElementoDespesa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -35,9 +40,7 @@
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
-        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
-    </a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

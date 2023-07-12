@@ -47,16 +47,14 @@
             @Html.DisplayFor(model => model.Parcela)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PgtoTipo)
+            @Html.DisplayNameFor(model => model.PgtosOrigens)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PgtoTipo.PgtoTipoId)
+            @Html.DisplayFor(model => model.PgtosOrigens.PgtoOrigemId)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.PgtoId">Edit</a> |
-    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
-        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
-    </a>
+    <a asp-action="Index">Back to List</a>
 </div>

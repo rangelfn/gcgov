@@ -38,29 +38,28 @@ namespace GCGov.Controllers
             return RedirectToAction("Index", "Contratos");
         }
 
-        public IActionResult DotacoesOrcamentarias()
-        {
-            return RedirectToAction("Index", "DotacoesOrcamentarias");
-        }
-
         public IActionResult Editais()
         {
             return RedirectToAction("Index", "Editais");
         }
 
+        public IActionResult NaturezasDespesas()
+        {
+            return RedirectToAction("Index", "NaturezasDespesas");
+        }
         public IActionResult Pagamentos()
         {
             return RedirectToAction("Index", "Pagamentos");
         }
 
-        public IActionResult PagamentosTipos()
+        public IActionResult PgtosOrigens()
         {
-            return RedirectToAction("Index", "PgtosTipos");
+            return RedirectToAction("Index", "PgtosOrigens");
         }
 
-        public IActionResult Pessoas()
+        public IActionResult Servidores()
         {
-            return RedirectToAction("Index", "Pessoas");
+            return RedirectToAction("Index", "Servidores");
         }
 
         public IActionResult PessoasPortarias()

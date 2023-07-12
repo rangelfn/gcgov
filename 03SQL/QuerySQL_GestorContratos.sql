@@ -124,10 +124,11 @@ CREATE TABLE Apostilamentos (
 -----------------------------------------------------------------------------
 -- Criação da tabela Despesa com restrição CHECK utilizando expressão regular
 -----------------------------------------------------------------------------
-CREATE TABLE DotacaoOrcamentarias (
-  NaturezaDespesa INT PRIMARY KEY,
-  FonteRecurso INT,
-  ProgramaTrabalho INT,
+CREATE TABLE NaturezaDespesas (
+  NatDespId INT PRIMARY KEY,
+  FonteRecurso VARCHAR(50),
+  ProgramaTrabalho VARCHAR(50),
+  ElementoDespesa VARCHAR(50),
 );
 
 ----------------------------------
@@ -141,7 +142,7 @@ CREATE TABLE PgtosModalidade (
 ----------------------------------
 -- Criação da tabela PagamentoTipo
 ----------------------------------
-CREATE TABLE PgtosTipos (
+CREATE TABLE PgtosOrigem (
   PgtoTipoID INT PRIMARY KEY IDENTITY,
   NotaEmpenho VARCHAR(255) NOT NULL,
   DataCadastro DATE NOT NULL,
@@ -149,8 +150,8 @@ CREATE TABLE PgtosTipos (
   FOREIGN KEY (PgtoModID) REFERENCES PgtosModalidade (PgtoModID) ON DELETE CASCADE,
   ContratoID INT,
   FOREIGN KEY (ContratoID) REFERENCES Contratos (ContratoID) ON DELETE CASCADE,
-  NaturezaDespesa INT,
-  FOREIGN KEY (NaturezaDespesa) REFERENCES DotacaoOrcamentarias (NaturezaDespesa) ON DELETE CASCADE 
+  NatDespId INT,
+  FOREIGN KEY (NatDespId) REFERENCES NaturezaDespesas (NatDespId) ON DELETE CASCADE 
 );
 
 -------------------------------

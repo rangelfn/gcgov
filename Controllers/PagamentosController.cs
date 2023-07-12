@@ -1,9 +1,13 @@
-﻿using GCGov.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using GCGov.Models;
 
-namespace GCGov.Controllers
+namespace gcgov.Controllers
 {
     public class PagamentosController : Controller
     {
@@ -17,8 +21,8 @@ namespace GCGov.Controllers
         // GET: Pagamentos
         public async Task<IActionResult> Index()
         {
-            var GCGovContext = _context.Pagamentos.Include(p => p.PgtoTipo);
-            return View(await GCGovContext.ToListAsync());
+            var gCGovContext = _context.Pagamentos.Include(p => p.PgtosOrigens);
+            return View(await gCGovContext.ToListAsync());
         }
 
         // GET: Pagamentos/Details/5
@@ -30,7 +34,7 @@ namespace GCGov.Controllers
             }
 
             var pagamento = await _context.Pagamentos
-                .Include(p => p.PgtoTipo)
+                .Include(p => p.PgtosOrigens)
                 .FirstOrDefaultAsync(m => m.PgtoId == id);
             if (pagamento == null)
             {
@@ -43,16 +47,14 @@ namespace GCGov.Controllers
         // GET: Pagamentos/Create
         public IActionResult Create()
         {
-            ViewData["PgtoTipoId"] = new SelectList(_context.PgtosTipos, "PgtoTipoId", "PgtoTipoId");
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId");
             return View();
         }
 
         // POST: Pagamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PgtoId,NotaLancamento,PreparacaoPagamento,OrdemBancaria,Valor,DataPagamento,Parcela,PgtoTipoId")] Pagamento pagamento)
+        public async Task<IActionResult> Create([Bind("PgtoId,NotaLancamento,PreparacaoPagamento,OrdemBancaria,Valor,DataPagamento,Parcela,PgtoOrigemId")] Pagamento pagamento)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +62,7 @@ namespace GCGov.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PgtoTipoId"] = new SelectList(_context.PgtosTipos, "PgtoTipoId", "PgtoTipoId", pagamento.PgtoTipoId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
             return View(pagamento);
         }
 
@@ -77,16 +79,14 @@ namespace GCGov.Controllers
             {
                 return NotFound();
             }
-            ViewData["PgtoTipoId"] = new SelectList(_context.PgtosTipos, "PgtoTipoId", "PgtoTipoId", pagamento.PgtoTipoId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
             return View(pagamento);
         }
 
         // POST: Pagamentos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PgtoId,NotaLancamento,PreparacaoPagamento,OrdemBancaria,Valor,DataPagamento,Parcela,PgtoTipoId")] Pagamento pagamento)
+        public async Task<IActionResult> Edit(int id, [Bind("PgtoId,NotaLancamento,PreparacaoPagamento,OrdemBancaria,Valor,DataPagamento,Parcela,PgtoOrigemId")] Pagamento pagamento)
         {
             if (id != pagamento.PgtoId)
             {
@@ -113,7 +113,7 @@ namespace GCGov.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PgtoTipoId"] = new SelectList(_context.PgtosTipos, "PgtoTipoId", "PgtoTipoId", pagamento.PgtoTipoId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
             return View(pagamento);
         }
 
@@ -126,7 +126,7 @@ namespace GCGov.Controllers
             }
 
             var pagamento = await _context.Pagamentos
-                .Include(p => p.PgtoTipo)
+                .Include(p => p.PgtosOrigens)
                 .FirstOrDefaultAsync(m => m.PgtoId == id);
             if (pagamento == null)
             {
@@ -150,14 +150,14 @@ namespace GCGov.Controllers
             {
                 _context.Pagamentos.Remove(pagamento);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PagamentoExists(int id)
         {
-            return (_context.Pagamentos?.Any(e => e.PgtoId == id)).GetValueOrDefault();
+          return (_context.Pagamentos?.Any(e => e.PgtoId == id)).GetValueOrDefault();
         }
     }
 }

@@ -4,6 +4,8 @@ namespace GCGov.Models
 {
     public partial class Contrato
     {
+        internal readonly object PgtosOrigems;
+
         public int ContratoId { get; set; }
 
         [Display(Name = "Extrato")]
@@ -61,7 +63,8 @@ namespace GCGov.Models
         public virtual ICollection<Aditivo> Aditivos { get; set; } = new List<Aditivo>();
         public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
         public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
-        public virtual ICollection<PgtosTipo> PgtosTipos { get; set; } = new List<PgtosTipo>();
+        public virtual ICollection<PgtosOrigem> PgtosOrigens { get; set; } = new List<PgtosOrigem>();
+
         public virtual ICollection<Portaria> Portaria { get; set; } = new List<Portaria>();
     }
 }

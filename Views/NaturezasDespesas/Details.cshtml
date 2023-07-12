@@ -1,4 +1,4 @@
-﻿@model GCGov.Models.DotacaoOrcamentaria
+﻿@model GCGov.Models.NaturezaDespesa
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>DotacaoOrcamentaria</h4>
+    <h4>NaturezaDespesa</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -22,11 +22,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProgramaTrabalho)
         </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ElementoDespesa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ElementoDespesa)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model?.NaturezaDespesa title="Editar"><i class="fas fa-pen-square mr-2"></i></a>
-    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
-        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
-    </a>
+    <a asp-action="Edit" asp-route-id="@Model?.NatDespId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

@@ -25,8 +25,8 @@ SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.
        P.NotaLancamento, P.PreparacaoPagamento, P.OrdemBancaria, P.DataPagamento, P.Valor AS ValorPagamento,
        PT.NotaEmpenho, PT.PgtoModID
 FROM Contratos C
-INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
-INNER JOIN Pagamentos P ON PT.PgtoTipoID = P.PgtoID;
+INNER JOIN PgtosOrigem PT ON C.ContratoID = PT.ContratoID
+INNER JOIN Pagamentos P ON PT.PgtoOrigemId = P.PgtoID;
 
 
 -------------------------------------------------
@@ -39,8 +39,8 @@ SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.
        STRING_AGG(P.NotaLancamento, ', ') AS NotasLancamento, 
        SUM(P.Valor) AS ValorTotalPagamentos
 FROM Contratos C
-INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
-INNER JOIN Pagamentos P ON PT.PgtoTipoID = P.PgtoID
+INNER JOIN PgtosOrigem PT ON C.ContratoID = PT.ContratoID
+INNER JOIN Pagamentos P ON PT.PgtoOrigemId = P.PgtoID
 GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor;
 
 
@@ -50,10 +50,10 @@ GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, 
 CREATE VIEW ViewDotacaoPorContratos 
 AS
 SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
-       DO.NaturezaDespesa, DO.FonteRecurso, DO.ProgramaTrabalho
+       DO.NatDespId, DO.FonteRecurso, DO.ProgramaTrabalho
 FROM Contratos C
-INNER JOIN PgtosTipos PT ON C.ContratoID = PT.ContratoID
-INNER JOIN DotacaoOrcamentarias DO ON PT.NaturezaDespesa = DO.NaturezaDespesa;
+INNER JOIN PgtosOrigem PT ON C.ContratoID = PT.ContratoID
+INNER JOIN NaturezasDespesas DO ON PT.NatDespId = DO.NatDespId;
 
 
 
