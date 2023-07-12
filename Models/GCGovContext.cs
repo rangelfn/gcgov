@@ -191,7 +191,6 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.PgtoOrigemId).HasColumnName("PgtoOrigemId");
             entity.Property(e => e.DataCadastro).HasColumnType("date");
             entity.Property(e => e.NotaEmpenho).HasMaxLength(255).IsUnicode(false);
-
             entity.Property(e => e.PgtoModId).HasColumnName("PgtoModID");
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.NatDespId).HasColumnName("NatDespId");

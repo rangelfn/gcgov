@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GCGov.Models.Apostilamento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Apostilamentos";
 }
 
-<h4>Lista de Apostilamentos</h4>
+<h4>Listar Apostilamentos</h4>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
@@ -13,23 +13,23 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.AptNum)</th>
-            <th>@Html.DisplayNameFor(model => model.AptDesc)</th>
-            <th>@Html.DisplayNameFor(model => model.AptData)</th>
-            <th>@Html.DisplayNameFor(model => model.AptValor)</th>
-            <th>@Html.DisplayNameFor(model => model.Contrato)</th>
-            <th></th>
+            <th class="col-sm-3">@Html.DisplayNameFor(model => model.Contrato)</th>
+            <th class="col-sm-2">@Html.DisplayNameFor(model => model.AptNum)</th>
+            <th class="col-sm-2">@Html.DisplayNameFor(model => model.AptDesc)</th>
+            <th class="col-sm-2">@Html.DisplayNameFor(model => model.AptData)</th>
+            <th class ="col-sm-2">@Html.DisplayNameFor(model => model.AptValor)</th>
+            <th class="col-sm-1"></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.AptNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.AptDesc)</td>
-            <td>@Html.DisplayFor(modelItem => item.AptData)</td>
-            <td>@Html.DisplayFor(modelItem => item.AptValor)</td>
-            <td>@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
-            <td>
+            <td class="col-sm-3">@(item.Contrato != null ? Html.DisplayFor(modelItem => item.Contrato.Extrato) : null)</td>
+            <td class="col-sm-2">@Html.DisplayFor(modelItem => item.AptNum)</td>
+            <td class="col-sm-2">@Html.DisplayFor(modelItem => item.AptDesc)</td>
+            <td>@item.AptData?.ToString("dd/MM/yyyy")</td>
+            <td class="col-sm-2">@Html.DisplayFor(modelItem => item.AptValor)</td>
+            <td class="col-sm-1">
                 <div class="btn-group" role="group" aria-label="Operações">
                     <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.AptId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
                     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.AptId" title="Editar"><i class="fas fa-pen-square"></i></a>

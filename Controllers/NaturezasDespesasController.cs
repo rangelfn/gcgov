@@ -128,7 +128,7 @@ namespace gcgov.Controllers
                 return NotFound();
             }
 
-            return View(naturezaDespesa);
+            return PartialView("_Delete", naturezaDespesa);
         }
 
         // POST: NaturezasDespesas/Delete/5

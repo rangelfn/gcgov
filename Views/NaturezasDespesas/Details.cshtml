@@ -1,36 +1,38 @@
 ﻿@model GCGov.Models.NaturezaDespesa
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes da Natureza de Despesa";
 }
+<div class="card">
+    <div class="card-header"><h4>Detalhes da Natureza de Despesa</h4></div>
+    <div class="card-body">
+        <div class="row">
+			<div class="col-md-12">
+			<dl class="row">
+				<div class="col-md-12">
+					<dt class = "col-sm-12">@Html.DisplayNameFor(model => model.FonteRecurso)</dt>
+					<dd class = "col-sm-12">@Html.DisplayFor(model => model.FonteRecurso)</dd>
+				</div>
+				<div class="col-md-12">
+					<dt class = "col-sm-12">@Html.DisplayNameFor(model => model.ProgramaTrabalho)</dt>
+					<dd class = "col-sm-12">@Html.DisplayFor(model => model.ProgramaTrabalho)</dd>
+				</div>
+				<div class="col-md-12">
+					<dt class = "col-sm-12">@Html.DisplayNameFor(model => model.ElementoDespesa)</dt>
+					<dd class = "col-sm-12">@Html.DisplayFor(model => model.ElementoDespesa)</dd>
+				</div>
+				<hr />
+			</dl>
+			</div>
+		</div>
 
-<h1>Details</h1>
-
-<div>
-    <h4>NaturezaDespesa</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FonteRecurso)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FonteRecurso)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProgramaTrabalho)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProgramaTrabalho)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ElementoDespesa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ElementoDespesa)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.NatDespId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+		<div>
+			<a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.NatDespId" title="Editar">
+				<span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar
+			</a>
+			<a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+				<span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+			</a>
+		</div>
+	</div>
 </div>

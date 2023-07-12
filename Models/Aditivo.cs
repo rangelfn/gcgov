@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace GCGov.Models
 {
@@ -13,7 +14,8 @@ namespace GCGov.Models
         public string AdtDesc { get; set; } = null!;
 
         [DisplayName("Data do Aditivo")]
-        public DateTime? AdtData { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+		public DateTime? AdtData { get; set; }
 
         [DisplayName("Valor")]
         public decimal AdtValor { get; set; }

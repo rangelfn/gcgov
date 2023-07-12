@@ -4,57 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="card">
+    <div class="card-header"><h4>Detalhes da Natureza de Despesa</h4></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="row">
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PgtosOrigens)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.PgtosOrigens.NotaEmpenho)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.NotaLancamento)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.NotaLancamento)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PreparacaoPagamento)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.PreparacaoPagamento)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.OrdemBancaria)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.OrdemBancaria)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Valor)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.Valor)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DataPagamento)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.DataPagamento)</dd>
+                    </div>
+                    <div class="col-md-12">
+                        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Parcela)</dt>
+                        <dd class="col-sm-10">@Html.DisplayFor(model => model.Parcela)</dd>
+                    </div>
+                    <hr />
+                </dl>
+            </div>
+        </div>
 
-<div>
-    <h4>Pagamento</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NotaLancamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NotaLancamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PreparacaoPagamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PreparacaoPagamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrdemBancaria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrdemBancaria)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataPagamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataPagamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Parcela)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Parcela)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PgtosOrigens)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PgtosOrigens.PgtoOrigemId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.PgtoId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div>
+            <a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.PgtoId" title="Editar">
+                <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar
+            </a>
+            <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+            </a>
+        </div>
+    </div>
 </div>

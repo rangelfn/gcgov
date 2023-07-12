@@ -14,7 +14,8 @@ namespace GCGov.Models
         public string AptDesc { get; set; } = null!;
 
         [Display(Name = "Data")]
-        public DateTime? AptData { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+		public DateTime? AptData { get; set; }
 
         [Display(Name = "Valor")]
         public decimal AptValor { get; set; }

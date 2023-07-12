@@ -4,8 +4,6 @@ namespace GCGov.Models
 {
     public partial class Contrato
     {
-        internal readonly object PgtosOrigems;
-
         public int ContratoId { get; set; }
 
         [Display(Name = "Extrato")]
@@ -33,7 +31,8 @@ namespace GCGov.Models
         public string LinkPublico { get; set; } = null!;
 
         [Display(Name = "Assinatura")]
-        public DateTime DataAssinatura { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+		public DateTime DataAssinatura { get; set; }
 
         [Display(Name = "Protocolo DIOF")]
         public string ProtocoloDiof { get; set; } = null!;
@@ -64,7 +63,6 @@ namespace GCGov.Models
         public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
         public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
         public virtual ICollection<PgtosOrigem> PgtosOrigens { get; set; } = new List<PgtosOrigem>();
-
         public virtual ICollection<Portaria> Portaria { get; set; } = new List<Portaria>();
     }
 }

@@ -1,60 +1,66 @@
 ﻿@model GCGov.Models.Pagamento
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adicionar Pagamento";
 }
 
-<h1>Create</h1>
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <h4>Adicionar Pagamento</h4>
+        <hr />
 
-<h4>Pagamento</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NotaLancamento" class="control-label"></label>
-                <input asp-for="NotaLancamento" class="form-control" />
-                <span asp-validation-for="NotaLancamento" class="text-danger"></span>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label asp-for="PgtoOrigemId" class="control-label"></label>
+                    <select asp-for="PgtoOrigemId" class="form-control" asp-items="ViewBag.PgtoOrigemId">
+                        <option value="">Selecionar Nota Lançamento</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="NotaLancamento" class="control-label"></label>
+                    <input asp-for="NotaLancamento" class="form-control" />
+                    <span asp-validation-for="NotaLancamento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="PreparacaoPagamento" class="control-label"></label>
+                    <input asp-for="PreparacaoPagamento" class="form-control" />
+                    <span asp-validation-for="PreparacaoPagamento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="OrdemBancaria" class="control-label"></label>
+                    <input asp-for="OrdemBancaria" class="form-control" />
+                    <span asp-validation-for="OrdemBancaria" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Valor" class="control-label"></label>
+                    <input asp-for="Valor" class="form-control" />
+                    <span asp-validation-for="Valor" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="DataPagamento" class="control-label"></label>
+                    <input asp-for="DataPagamento" class="form-control" type="date" />
+                    <span asp-validation-for="DataPagamento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Parcela" class="control-label"></label>
+                    <input asp-for="Parcela" class="form-control"/>
+                    <span asp-validation-for="Parcela" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PreparacaoPagamento" class="control-label"></label>
-                <input asp-for="PreparacaoPagamento" class="form-control" />
-                <span asp-validation-for="PreparacaoPagamento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrdemBancaria" class="control-label"></label>
-                <input asp-for="OrdemBancaria" class="form-control" />
-                <span asp-validation-for="OrdemBancaria" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" />
-                <span asp-validation-for="Valor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataPagamento" class="control-label"></label>
-                <input asp-for="DataPagamento" class="form-control" />
-                <span asp-validation-for="DataPagamento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Parcela" class="control-label"></label>
-                <input asp-for="Parcela" class="form-control" />
-                <span asp-validation-for="Parcela" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PgtoOrigemId" class="control-label"></label>
-                <select asp-for="PgtoOrigemId" class ="form-control" asp-items="ViewBag.PgtoOrigemId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="col-md-12">
+                <div class="mt-3">
+                    <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                        <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+                    </a>
+                    <button type="submit" class="btn btn-labeled btn-success" title="Salvar">
+                        <span class="btn-label"><i class="fa-solid fa-check"></i></span>Salvar
+                    </button>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

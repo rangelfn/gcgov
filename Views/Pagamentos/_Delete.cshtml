@@ -1,0 +1,45 @@
+﻿@model GCGov.Models.Pagamento
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row justify-content-center">
+    <h6 class="text-danger">ATENÇÃO! Esta ação não poderá ser desfeita, você tem certeza que deseja excluir o Pagamento?</h6>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="row">
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.PgtosOrigens)</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.PgtosOrigens.NotaEmpenho)</dd>
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.NotaLancamento)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.NotaLancamento)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.PreparacaoPagamento)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.PreparacaoPagamento)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.OrdemBancaria)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.OrdemBancaria)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.Valor)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Valor)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.DataPagamento)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.DataPagamento)</dd>
+                <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.Parcela)</dt>
+                <dd class = "col-sm-12">@Html.DisplayFor(model => model.Parcela)</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <div class="form-group row"></div>
+                <div class="col-md-12">
+                    <div class="mt-3">
+                        <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                            <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+                        </a>
+                        <button type="submit" class="btn btn-labeled btn-danger" title="Deletar">
+                            <span class="btn-label"><i class="fa-solid fa-trash"></i></span>Deletar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

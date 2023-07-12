@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GCGov.Models.Contrato>
 
 @{
-    ViewData["Title"] = "Litagem de Contratos";
+    ViewData["Title"] = "Contratos";
 }
 
-<h1>Listagem de Contratos</h1>
+<h4>Listar Contratos</h4>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
@@ -14,29 +14,23 @@
     <thead>
         <tr>
             <th>Extrato</th>
-            <th>Contratada</th>
             <th>Objeto</th>
             <th>Vigência</th>
             <th>Início</th>
             <th>Processo SEI</th>
-            <th>Prot DIOF</th>
-            <th>Valor</th>
             <th>Modalidade</th>
             <th>UG</th>
-            <th></th>
+            <th class="col-sm-1"></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Extrato)</td>
-            <td>@Html.DisplayFor(modelItem => item.Contratada)</td>
             <td>@Html.DisplayFor(modelItem => item.Objeto)</td>
             <td>@Html.DisplayFor(modelItem => item.Vigencia)</td>
-            <td>@Html.DisplayFor(modelItem => item.DataInicio)</td>
+            <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
             <td>@Html.DisplayFor(modelItem => item.ProcessoSei)</td>
-            <td>@Html.DisplayFor(modelItem => item.ProtocoloDiof)</td>
-            <td>@Html.DisplayFor(modelItem => item.Valor)</td>
             <td>@(item.ModLicitacao != null ? Html.DisplayFor(modelItem => item.ModLicitacao.ModNome) : null)</td>
             <td>@(item.UgCodigo != null ? Html.DisplayFor(modelItem => item.UgCodigo.UgNome) : null)</td>
             <td>

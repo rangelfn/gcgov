@@ -1,71 +1,63 @@
 ﻿@model IEnumerable<GCGov.Models.Pagamento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Pagamentos";
 }
 
-<h1>Index</h1>
-
+<h4>Listar Pagamentos</h4>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
+        <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
+    </a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NotaLancamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PreparacaoPagamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrdemBancaria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataPagamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Parcela)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PgtosOrigens)
-            </th>
-            <th></th>
+            <th class="col-sm-2">Nota Empenho</th>
+            <th class="col-sm-1">NL</th>
+            <th class="col-sm-1">PP</th>
+            <th class="col-sm-2">OB</th>
+            <th class="col-sm-2">Valor</th>
+            <th class="col-sm-1">Parcela</th>
+            <th class="col-sm-2">Data</th>
+            <th class="col-sm-1"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NotaLancamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PreparacaoPagamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrdemBancaria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPagamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Parcela)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PgtosOrigens.PgtoOrigemId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PgtoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PgtoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PgtoId">Delete</a>
-            </td>
-        </tr>
+    @foreach (var item in Model) {
+            <tr>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.PgtosOrigens.NotaEmpenho)</td>
+                <td class="col-sm-1">@Html.DisplayFor(modelItem => item.NotaLancamento)</td>
+                <td class="col-sm-1">@Html.DisplayFor(modelItem => item.PreparacaoPagamento)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.OrdemBancaria)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.Valor)</td>
+                <td class="col-sm-1">@Html.DisplayFor(modelItem => item.Parcela)</td>
+                <td>@item.DataPagamento.ToString("dd/MM/yyyy")</td>
+                <td class="col-sm-1">
+                    <div class="btn-group" role="group" aria-label="Operações">
+                        <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.PgtoId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.PgtoId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                        <button class="btn btn-danger delete-button" data-id="@item.PgtoId" data-url="/Pagamentos/Delete" title="Deletar"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
 }
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title font-weight-bold" id="deleteModalLabel">Excluir Aditivo</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/deleteModal.js"></script>
+}

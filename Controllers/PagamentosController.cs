@@ -47,7 +47,8 @@ namespace gcgov.Controllers
         // GET: Pagamentos/Create
         public IActionResult Create()
         {
-            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId");
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho");
+            ViewBag.PgtoOrigem = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho");
             return View();
         }
 
@@ -62,7 +63,8 @@ namespace gcgov.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho", pagamento.PgtoOrigemId);
+            ViewBag.PgtoOrigem = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho");
             return View(pagamento);
         }
 
@@ -79,7 +81,7 @@ namespace gcgov.Controllers
             {
                 return NotFound();
             }
-            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho", pagamento.PgtoOrigemId);
             return View(pagamento);
         }
 
@@ -113,7 +115,7 @@ namespace gcgov.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "PgtoOrigemId", pagamento.PgtoOrigemId);
+            ViewData["PgtoOrigemId"] = new SelectList(_context.PgtosOrigens, "PgtoOrigemId", "NotaEmpenho", pagamento.PgtoOrigemId);
             return View(pagamento);
         }
 
@@ -133,7 +135,7 @@ namespace gcgov.Controllers
                 return NotFound();
             }
 
-            return View(pagamento);
+            return PartialView("_Delete", pagamento);
         }
 
         // POST: Pagamentos/Delete/5

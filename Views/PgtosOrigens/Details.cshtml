@@ -1,0 +1,39 @@
+﻿@model GCGov.Models.PgtosOrigem
+
+@{
+    ViewData["Title"] = "Detalhar Nota Empenho";
+}
+
+<div class="card">
+    <div class="card-header"><h4>Detalhar Nota Empenho</h4></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="row">
+                    <div class="col-md-12">
+                        <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.NotaEmpenho)</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.NotaEmpenho)</dd>
+                        <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.DataCadastro)</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.DataCadastro)</dd>
+                        <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.Contrato)</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.Contrato.Extrato)</dd>
+                        <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.NatDesp)</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.NatDesp.ElementoDespesa)</dd>
+                        <dt class = "col-sm-12">@Html.DisplayNameFor(model => model.PgtoMod)</dt>
+                        <dd class = "col-sm-12">@Html.DisplayFor(model => model.PgtoMod.PgtoModNome)</dd>
+                    </div>
+                    <hr />
+                </dl>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Edit" class="btn btn-labeled btn-primary" asp-route-id="@Model?.PgtoOrigemId" title="Editar">
+                <span class="btn-label"><i class="fas fa-pen-square"></i></span>Editar
+            </a>
+            <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+            </a>
+        </div>
+    </div>
+</div>

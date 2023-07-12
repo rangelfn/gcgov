@@ -49,7 +49,7 @@ BEGIN
 END
 
 ---------------------------------
--- Listar as Triggers existentes
+-- Listar  as Triggers existentes
 ---------------------------------
 SELECT name, object_name(parent_id) AS table_name
 FROM sys.triggers

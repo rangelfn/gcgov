@@ -17,9 +17,8 @@ namespace GCGov.Controllers
         // GET: Contratos
         public async Task<IActionResult> Index()
         {
-            var gestorContratosContext = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp);
-
-            return View(await gestorContratosContext.ToListAsync());
+            var contrato = await _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp).ToListAsync();
+            return View(contrato);
         }
 
         // GET: Contratos/Details/5

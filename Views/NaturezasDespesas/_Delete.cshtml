@@ -1,0 +1,37 @@
+﻿@model GCGov.Models.NaturezaDespesa
+
+@{
+    ViewData["Title"] = "Deletar Natureza de Despeza";
+}
+
+<div class="row justify-content-center">
+    <h6 class="text-danger">ATENÇÃO! Esta ação não poderá ser desfeita, você tem certeza que deseja excluir a Natureza de Despesa?</h6>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="row">
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.FonteRecurso)</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.FonteRecurso)</dd>
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.ProgramaTrabalho)</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.ProgramaTrabalho)</dd>
+                <dt class="col-sm-12">@Html.DisplayNameFor(model => model.ElementoDespesa)</dt>
+                <dd class="col-sm-12">@Html.DisplayFor(model => model.ElementoDespesa)</dd>
+            </dl>
+            
+            <form asp-action="Delete">
+                <div class="form-group row"></div>
+                <div class="col-md-12">
+                    <div class="mt-3">
+                        <a asp-action="Index" class="btn btn-labeled btn-secondary" title="Voltar">
+                            <span class="btn-label"><i class="fa-solid fa-arrow-left"></i></span>Voltar
+                        </a>
+                        <button type="submit" class="btn btn-labeled btn-danger" title="Deletar">
+                            <span class="btn-label"><i class="fa-solid fa-trash"></i></span>Deletar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

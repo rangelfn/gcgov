@@ -1,0 +1,59 @@
+﻿@model IEnumerable<GCGov.Models.PgtosOrigem>
+
+@{
+    ViewData["Title"] = "Nota Empenho";
+}
+
+<h4>Listar Notas Empenhos</h4>
+<p>
+    <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
+        <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
+    </a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Contrato)</th>
+            <th>@Html.DisplayNameFor(model => model.NotaEmpenho)</th>
+            <th>@Html.DisplayNameFor(model => model.NatDesp)</th>
+            <th>@Html.DisplayNameFor(model => model.PgtoMod)</th>
+            <th>@Html.DisplayNameFor(model => model.DataCadastro)</th>
+            <th class="col-sm-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>@Html.DisplayFor(modelItem => item.Contrato.Extrato)</td>
+                <td>@Html.DisplayFor(modelItem => item.NotaEmpenho)</td>
+                <td>@Html.DisplayFor(modelItem => item.NatDesp.ElementoDespesa)</td>
+                <td>@Html.DisplayFor(modelItem => item.PgtoMod.PgtoModNome)</td>
+                <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
+                <td class="col-sm-1">
+                    <div class="btn-group" role="group" aria-label="Operações">
+                        <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.PgtoOrigemId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.PgtoOrigemId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                        <button class="btn btn-danger delete-button" data-id="@item.PgtoOrigemId" data-url="/PgtosOrigens/Delete" title="Deletar"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title font-weight-bold" id="deleteModalLabel">Excluir Aditivo</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/deleteModal.js"></script>
+}
