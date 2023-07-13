@@ -19,7 +19,7 @@ public partial class GCGovContext : DbContext
     public virtual DbSet<Contrato> Contratos { get; set; }
     public virtual DbSet<Edital> Editais { get; set; }
     public virtual DbSet<NaturezaDespesa> NaturezasDespesas { get; set; }
-    public virtual DbSet<ModLicitacao> ModLicitacoes { get; set; }
+    public virtual DbSet<Modalidade> Modalidades { get; set; }
     public virtual DbSet<Pagamento> Pagamentos { get; set; }
     public virtual DbSet<PgtosModalidade> PgtosModalidades { get; set; }
     public virtual DbSet<PgtosOrigem> PgtosOrigens { get; set; }
@@ -108,15 +108,15 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.DataInicio).HasColumnType("date");
             entity.Property(e => e.Extrato).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.LinkPublico).HasMaxLength(255).IsUnicode(false);
-            entity.Property(e => e.ModLicitacaoId).HasColumnName("ModLicitacaoID");
+            entity.Property(e => e.ModId).HasColumnName("ModId");
             entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
             entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.ProtocoloDiof).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.UgDpId).HasColumnName("UgDpID");
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
-            entity.HasOne(d => d.ModLicitacao).WithMany(p => p.Contratos)
-                .HasForeignKey(d => d.ModLicitacaoId)
+            entity.HasOne(d => d.Modalidade).WithMany(p => p.Contratos)
+                .HasForeignKey(d => d.ModId)
                 .HasConstraintName("FK__Contratos__ModLi__047AA831");
             entity.HasOne(d => d.UgCodigo).WithMany(p => p.Contratos)
                 .HasForeignKey(d => d.UgCodigoId)
@@ -140,11 +140,11 @@ public partial class GCGovContext : DbContext
                 .HasConstraintName("FK__Editais__Contrat__093F5D4E");
         });
 
-        modelBuilder.Entity<ModLicitacao>(entity =>
+        modelBuilder.Entity<Modalidade>(entity =>
         {
-            entity.HasKey(e => e.ModLicitacaoId).HasName("PK__ModLicit__FE9CF016C0C5EC6E");
-            entity.ToTable("ModLicitacao");
-            entity.Property(e => e.ModLicitacaoId).HasColumnName("ModLicitacaoID");
+            entity.HasKey(e => e.ModId).HasName("PK__ModLicit__FE9CF016C0C5EC6E");
+            entity.ToTable("Modalidade");
+            entity.Property(e => e.ModId).HasColumnName("ModId");
             entity.Property(e => e.ModNome).HasMaxLength(255).IsUnicode(false);
         });
 

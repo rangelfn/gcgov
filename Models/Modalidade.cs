@@ -1,8 +1,8 @@
 ﻿namespace GCGov.Models;
 
-public partial class ModLicitacao
+public partial class Modalidade
 {
-    public int ModLicitacaoId { get; set; }
+    public int ModId { get; set; }
     public string ModNome { get; set; } = null!;
     public virtual ICollection<Contrato> Contratos { get; set; } = new List<Contrato>();
 }

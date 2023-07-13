@@ -31,7 +31,7 @@
             <td>@Html.DisplayFor(modelItem => item.Vigencia)</td>
             <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
             <td>@Html.DisplayFor(modelItem => item.ProcessoSei)</td>
-            <td>@(item.ModLicitacao != null ? Html.DisplayFor(modelItem => item.ModLicitacao.ModNome) : null)</td>
+                <td>@(item.Modalidade != null ? Html.DisplayFor(modelItem => item.Modalidade.ModNome) : null)</td>
             <td>@(item.UgCodigo != null ? Html.DisplayFor(modelItem => item.UgCodigo.UgNome) : null)</td>
             <td>
               <div class="btn-group" role="group" aria-label="Operações">

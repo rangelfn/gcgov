@@ -54,7 +54,7 @@ CREATE TABLE UgUsuarios (
 -- Criação da Modalidade
 ------------------------
 CREATE TABLE ModLicitacao (
-  ModLicitacaoID INT PRIMARY KEY IDENTITY,
+  ModId INT PRIMARY KEY IDENTITY,
   ModNome VARCHAR(255) NOT NULL
 );
 
@@ -73,8 +73,8 @@ CREATE TABLE Contratos (
   LinkPublico VARCHAR(255) NOT NULL,
   DataAssinatura DATE NOT NULL,
   ProtocoloDiof VARCHAR(255) NOT NULL,
-  ModLicitacaoID INT,
-  FOREIGN KEY (ModLicitacaoID) REFERENCES ModLicitacao (ModLicitacaoID),
+  ModId INT,
+  FOREIGN KEY (ModId) REFERENCES ModLicitacao (ModId),
   Valor DECIMAL(10, 2),
   UgCodigoID INT,
   FOREIGN KEY (UgCodigoID) REFERENCES UnidadesGestoras (UgCodigoID),

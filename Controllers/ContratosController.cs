@@ -17,14 +17,14 @@ namespace GCGov.Controllers
         // GET: Contratos
         public async Task<IActionResult> Index()
         {
-            var contrato = await _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp).ToListAsync();
+            var contrato = await _context.Contratos.Include(c => c.Modalidade).Include(c => c.UgCodigo).Include(c => c.UgDp).ToListAsync();
             return View(contrato);
         }
 
         // GET: Contratos/Details/5
         public IActionResult Details(int id)
         {
-            var contrato = _context.Contratos.Include(c => c.ModLicitacao).Include(c => c.UgCodigo).Include(c => c.UgDp)
+            var contrato = _context.Contratos.Include(c => c.Modalidade).Include(c => c.UgCodigo).Include(c => c.UgDp)
                 .FirstOrDefault(c => c.ContratoId == id);
 
             if (contrato == null)
@@ -38,7 +38,7 @@ namespace GCGov.Controllers
         // GET: Contratos/Create
         public IActionResult Create()
         {
-            ViewData["ModLicitacaoId"] = new SelectList(_context.ModLicitacoes, "ModLicitacaoId", "ModNome");
+            ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome");
             ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome");
             ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome");
             return View();
@@ -47,7 +47,7 @@ namespace GCGov.Controllers
         // POST: Contratos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContratoId,Extrato,Contratante,Contratada,Objeto,Vigencia,DataInicio,ProcessoSei,LinkPublico,DataAssinatura,ProtocoloDiof,ModLicitacaoId,Valor,UgCodigoId,UgDpId")] Contrato contrato)
+        public async Task<IActionResult> Create([Bind("ContratoId,Extrato,Contratante,Contratada,Objeto,Vigencia,DataInicio,ProcessoSei,LinkPublico,DataAssinatura,ProtocoloDiof,ModId,Valor,UgCodigoId,UgDpId")] Contrato contrato)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace GCGov.Controllers
             }
 
             var contrato = await _context.Contratos
-                .Include(c => c.ModLicitacao)
+                .Include(c => c.Modalidade)
                 .Include(c => c.UgCodigo)
                 .Include(c => c.UgDp)
                 .FirstOrDefaultAsync(c => c.ContratoId == id);
@@ -79,7 +79,7 @@ namespace GCGov.Controllers
             }
 
             // Recuperar as listas de opções para os campos de seleção
-            ViewData["ModLicitacaoId"] = new SelectList(_context.ModLicitacoes, "ModLicitacaoId", "ModNome", contrato.ModLicitacaoId);
+            ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome", contrato.ModId);
             ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
             ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
 
@@ -89,7 +89,7 @@ namespace GCGov.Controllers
         // POST: Contratos/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,Extrato,Contratante,Contratada,Objeto,Vigencia,DataInicio,ProcessoSei,LinkPublico,DataAssinatura,ProtocoloDiof,ModLicitacaoId,Valor,UgCodigoId,UgDpId")] Contrato contrato)
+        public async Task<IActionResult> Edit(int id, [Bind("ContratoId,Extrato,Contratante,Contratada,Objeto,Vigencia,DataInicio,ProcessoSei,LinkPublico,DataAssinatura,ProtocoloDiof,ModId,Valor,UgCodigoId,UgDpId")] Contrato contrato)
         {
             if (id != contrato.ContratoId)
             {
@@ -118,7 +118,7 @@ namespace GCGov.Controllers
             }
 
             // Recuperar as listas de opções para os campos de seleção
-            ViewData["ModLicitacaoId"] = new SelectList(_context.ModLicitacoes, "ModLicitacaoId", "ModNome", contrato.ModLicitacaoId);
+            ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome", contrato.ModId);
             ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
             ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
 
@@ -134,7 +134,7 @@ namespace GCGov.Controllers
             }
 
             var contrato = await _context.Contratos
-                .Include(c => c.ModLicitacao)
+                .Include(c => c.Modalidade)
                 .Include(c => c.UgCodigo)
                 .Include(c => c.UgDp)
                 .FirstOrDefaultAsync(m => m.ContratoId == id);

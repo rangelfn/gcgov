@@ -11,7 +11,7 @@ USE GestorContratos
 
 CREATE VIEW ViewEditaisPorContratos
 AS
-SELECT C.UgCodigoID, c.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, c.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        E.EdtNum, E.EdtTipo, E.EdtData
 FROM Contratos C
 INNER JOIN Editais E ON C.ContratoID = E.ContratoID;
@@ -21,7 +21,7 @@ INNER JOIN Editais E ON C.ContratoID = E.ContratoID;
 --------------------------------------------------
 CREATE VIEW ViewContratosPagamentos
 AS
-SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        P.NotaLancamento, P.PreparacaoPagamento, P.OrdemBancaria, P.DataPagamento, P.Valor AS ValorPagamento,
        PT.NotaEmpenho, PT.PgtoModID
 FROM Contratos C
@@ -35,13 +35,13 @@ INNER JOIN Pagamentos P ON PT.PgtoOrigemId = P.PgtoID;
 
 CREATE VIEW ViewPagamentosTotalPorContrato
 AS
-SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        STRING_AGG(P.NotaLancamento, ', ') AS NotasLancamento, 
        SUM(P.Valor) AS ValorTotalPagamentos
 FROM Contratos C
 INNER JOIN PgtosOrigem PT ON C.ContratoID = PT.ContratoID
 INNER JOIN Pagamentos P ON PT.PgtoOrigemId = P.PgtoID
-GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor;
+GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor;
 
 
 ---------------------------------------------
@@ -49,7 +49,7 @@ GROUP BY C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, 
 ---------------------------------------------
 CREATE VIEW ViewDotacaoPorContratos 
 AS
-SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        DO.NatDespId, DO.FonteRecurso, DO.ProgramaTrabalho
 FROM Contratos C
 INNER JOIN PgtosOrigem PT ON C.ContratoID = PT.ContratoID
@@ -64,7 +64,7 @@ INNER JOIN NaturezasDespesas DO ON PT.NatDespId = DO.NatDespId;
 
 CREATE VIEW ViewPortariasPorContratos
 AS
-SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        P.PortariaNumero, P.ProtocoloDiof, P.DataPublicacao
 FROM Contratos C
 INNER JOIN Portarias P ON C.ContratoID = P.ContratoID;
@@ -75,7 +75,7 @@ INNER JOIN Portarias P ON C.ContratoID = P.ContratoID;
 ---------------------------------
 CREATE VIEW ViewServidoresPorContratos
 AS
-SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModLicitacaoID, C.Valor,
+SELECT C.UgCodigoID, C.ProcessoSei, C.Contratada, C.Objeto, C.ModId, C.Valor,
        S.Matricula, S.Nome,
        PS.Funcao, PS.Resolucao
 FROM Contratos C

@@ -38,7 +38,7 @@ namespace GCGov.Models
         public string ProtocoloDiof { get; set; } = null!;
 
         [Display(Name = "Modalidade")]
-        public int? ModLicitacaoId { get; set; }
+        public int? ModId { get; set; }
 
         [Display(Name = "Valor")]
         public decimal? Valor { get; set; }
@@ -51,7 +51,7 @@ namespace GCGov.Models
 
         // Propriedades adicionadas para os campos de nome
         [Display(Name = "Modalidade")]
-        public virtual ModLicitacao? ModLicitacao { get; set; }
+        public virtual Modalidade? Modalidade { get; set; }
 
         [Display(Name = "Unidade Gestora")]
         public virtual UnidadesGestora? UgCodigo { get; set; }
