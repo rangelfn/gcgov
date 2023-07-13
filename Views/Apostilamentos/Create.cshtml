@@ -1,12 +1,12 @@
 ﻿@model GCGov.Models.Apostilamento
 
 @{
-    ViewData["Title"] = "Adicionar Apostilamento";
+    ViewData["Title"] = "Cadastrar Apostilamento";
 }
 
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <h4>Adicionar Aditivo</h4>
+        <h4>Cadastrar Aditivo</h4>
         <hr />
 
         <form asp-action="Create">
@@ -25,14 +25,14 @@
                     <span asp-validation-for="AptNum" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <label asp-for="AptData" class="control-label"></label>
-                    <input asp-for="AptData" class="form-control" type="date" />
-                    <span asp-validation-for="AptData" class="text-danger"></span>
-                </div>
-                <div class="col-md-6">
                     <label asp-for="AptDesc" class="control-label"></label>
                     <input asp-for="AptDesc" class="form-control" />
                     <span asp-validation-for="AptDesc" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="AptData" class="control-label"></label>
+                    <input asp-for="AptData" class="form-control" type="date" />
+                    <span asp-validation-for="AptData" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
                     <label asp-for="AptValor" class="control-label"></label>

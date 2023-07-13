@@ -10,6 +10,20 @@
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
     </a>
 </p>
+<div class="search-section bg-light">
+    <div class="container">
+        <form class="navbar-form form-inline">
+            <br />
+            <div class="input-group search-box">
+                <input type="text" id="search" class="form-control" placeholder="Pesquisar" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button"> <i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <br />
+        </form>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -37,7 +51,7 @@
               <div class="btn-group" role="group" aria-label="Operações">
                   <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.ContratoId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
                   <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ContratoId" title="Editar"><i class="fas fa-pen-square"></i></a>
-                  <button class="btn btn-danger delete-button" data-id="@item.ContratoId" data-url="/Contratos/Delete" title="Deletar"><i class="fas fa-trash"></i></button>
+                  <button class="btn btn-danger delete-button" data-id="@item.ContratoId" data-url="/Contratos/Delete" title="Excluir"><i class="fas fa-trash"></i></button>
               </div>
             </td>
         </tr>

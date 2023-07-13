@@ -201,7 +201,7 @@ CREATE TABLE Servidores (
 -- Criação da tabela PortariaPessoa
 -----------------------------------
 CREATE TABLE PortariasServidores (
-  PortariasPessoasID INT PRIMARY KEY IDENTITY,
+  PortariasServidorID INT PRIMARY KEY IDENTITY,
   Funcao VARCHAR(255) NOT NULL,
   Resolucao VARCHAR(255) NOT NULL,
   PortariaID INT,

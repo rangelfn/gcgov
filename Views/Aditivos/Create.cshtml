@@ -1,12 +1,12 @@
 ﻿@model GCGov.Models.Aditivo
 
 @{
-    ViewData["Title"] = "Adicionar Aditivos";
+    ViewData["Title"] = "Cadastrar Aditivos";
 }
 
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <h4>Adicionar Aditivo</h4>
+        <h4>Cadastrar Aditivo</h4>
         <hr />
 
         <form asp-action="Create">
@@ -19,12 +19,12 @@
                     </select>
                     <span asp-validation-for="ContratoId" class="text-danger"></span>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label asp-for="AdtNum" class="control-label"></label>
                     <input asp-for="AdtNum" class="form-control" />
                     <span asp-validation-for="AdtNum" class="text-danger"></span>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label asp-for="AdtDesc" class="control-label"></label>
                     <input asp-for="AdtDesc" class="form-control" />
                     <span asp-validation-for="AdtDesc" class="text-danger"></span>

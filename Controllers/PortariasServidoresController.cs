@@ -23,6 +23,7 @@ namespace gcgov.Controllers
         {
             var gCGovContext = _context.PortariasServidores.Include(p => p.MatriculaNavigation).Include(p => p.Portaria);
             return View(await gCGovContext.ToListAsync());
+
         }
 
         // GET: PortariasServidores/Details/5
@@ -36,7 +37,7 @@ namespace gcgov.Controllers
             var portariaServidor = await _context.PortariasServidores
                 .Include(p => p.MatriculaNavigation)
                 .Include(p => p.Portaria)
-                .FirstOrDefaultAsync(m => m.PortariasPessoasId == id);
+                .FirstOrDefaultAsync(m => m.PortariasServidorID == id);
             if (portariaServidor == null)
             {
                 return NotFound();
@@ -49,16 +50,14 @@ namespace gcgov.Controllers
         public IActionResult Create()
         {
             ViewData["Matricula"] = new SelectList(_context.Servidores, "Matricula", "Matricula");
-            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaId");
+            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaNumero");
             return View();
         }
 
         // POST: PortariasServidores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PortariasPessoasId,Funcao,Resolucao,PortariaId,Matricula")] PortariaServidor portariaServidor)
+        public async Task<IActionResult> Create([Bind("PortariasServidorID,Funcao,Resolucao,PortariaId,Matricula")] PortariaServidor portariaServidor)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +66,7 @@ namespace gcgov.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Matricula"] = new SelectList(_context.Servidores, "Matricula", "Matricula", portariaServidor.Matricula);
-            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaId", portariaServidor.PortariaId);
+            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaNumero", portariaServidor.PortariaId);
             return View(portariaServidor);
         }
 
@@ -85,18 +84,16 @@ namespace gcgov.Controllers
                 return NotFound();
             }
             ViewData["Matricula"] = new SelectList(_context.Servidores, "Matricula", "Matricula", portariaServidor.Matricula);
-            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaId", portariaServidor.PortariaId);
+            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaNumero", portariaServidor.PortariaId);
             return View(portariaServidor);
         }
 
         // POST: PortariasServidores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PortariasPessoasId,Funcao,Resolucao,PortariaId,Matricula")] PortariaServidor portariaServidor)
+        public async Task<IActionResult> Edit(int id, [Bind("PortariasServidorID,Funcao,Resolucao,PortariaId,Matricula")] PortariaServidor portariaServidor)
         {
-            if (id != portariaServidor.PortariasPessoasId)
+            if (id != portariaServidor.PortariasServidorID)
             {
                 return NotFound();
             }
@@ -110,7 +107,7 @@ namespace gcgov.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PortariaServidorExists(portariaServidor.PortariasPessoasId))
+                    if (!PortariaServidorExists(portariaServidor.PortariasServidorID))
                     {
                         return NotFound();
                     }
@@ -122,7 +119,7 @@ namespace gcgov.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Matricula"] = new SelectList(_context.Servidores, "Matricula", "Matricula", portariaServidor.Matricula);
-            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaId", portariaServidor.PortariaId);
+            ViewData["PortariaId"] = new SelectList(_context.Portarias, "PortariaId", "PortariaNumero", portariaServidor.PortariaId);
             return View(portariaServidor);
         }
 
@@ -137,13 +134,13 @@ namespace gcgov.Controllers
             var portariaServidor = await _context.PortariasServidores
                 .Include(p => p.MatriculaNavigation)
                 .Include(p => p.Portaria)
-                .FirstOrDefaultAsync(m => m.PortariasPessoasId == id);
+                .FirstOrDefaultAsync(m => m.PortariasServidorID == id);
             if (portariaServidor == null)
             {
                 return NotFound();
             }
 
-            return View(portariaServidor);
+			return PartialView("_Delete", portariaServidor);
         }
 
         // POST: PortariasServidores/Delete/5
@@ -167,7 +164,7 @@ namespace gcgov.Controllers
 
         private bool PortariaServidorExists(int id)
         {
-          return (_context.PortariasServidores?.Any(e => e.PortariasPessoasId == id)).GetValueOrDefault();
+          return (_context.PortariasServidores?.Any(e => e.PortariasServidorID == id)).GetValueOrDefault();
         }
     }
 }

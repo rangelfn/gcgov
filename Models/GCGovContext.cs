@@ -225,8 +225,8 @@ public partial class GCGovContext : DbContext
 
         modelBuilder.Entity<PortariaServidor>(entity =>
         {
-            entity.HasKey(e => e.PortariasPessoasId).HasName("PK__Portaria__3F98A5D10F60BA5E");
-            entity.Property(e => e.PortariasPessoasId).HasColumnName("PortariasPessoasID");
+            entity.HasKey(e => e.PortariasServidorID).HasName("PK__Portaria__3F98A5D10F60BA5E");
+            entity.Property(e => e.PortariasServidorID).HasColumnName("PortariasServidorID");
             entity.Property(e => e.Funcao).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.PortariaId).HasColumnName("PortariaID");
             entity.Property(e => e.Resolucao).HasMaxLength(255).IsUnicode(false);

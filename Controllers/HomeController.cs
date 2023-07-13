@@ -57,6 +57,12 @@ namespace GCGov.Controllers
             return RedirectToAction("Index", "PgtosOrigens");
         }
 
+
+        public IActionResult Portarias()
+        {
+            return RedirectToAction("Index", "Portarias");
+        }
+        
         public IActionResult Servidores()
         {
             return RedirectToAction("Index", "Servidores");
@@ -65,11 +71,6 @@ namespace GCGov.Controllers
         public IActionResult PessoasPortarias()
         {
             return RedirectToAction("Index", "PortariasServidores");
-        }
-
-        public IActionResult Portarias()
-        {
-            return RedirectToAction("Index", "Portarias");
         }
 
         public IActionResult UsuariosContratos()

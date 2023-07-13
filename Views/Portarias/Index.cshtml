@@ -1,61 +1,61 @@
 ﻿@model IEnumerable<GCGov.Models.Portaria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Portarias";
 }
 
-<h1>Index</h1>
-
+<h4>Listar Portarias</h4>
 <p>
     <a asp-action="Create" class="btn btn-labeled btn-primary" title="Cadastrar">
         <span class="btn-label"><i class="fa-regular fa-square-plus"></i></span>Cadastrar
     </a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PortariaNumero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProtocoloDiof)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataPublicacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contrato)
-            </th>
+            <th class="col-sm-3">Extrado do Contrato</th>
+            <th class="col-sm-2">Numero</th>
+            <th class="col-sm-2">Prot DIOF</th>
+            <th class="col-sm-2"> Data Publicacao</th>
+            <th class="col-sm-2">Data Inicio</th>
+            <th class="col-sm-2"> Data Inicio</th>
             <th class="col-sm-1"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PortariaNumero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProtocoloDiof)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPublicacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contrato.ContratoId)
-            </td>
-            <td>
-                <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.PortariaId"  title="Ver Detalhes"><i class="fas fa-file-alt"></i></a>
-                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.PortariaId" title="Editar"><i class="fas fa-pen-square"></i></a>
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.PortariaId" title="Apagar"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
-}
+    @foreach (var item in Model) 
+        {
+            <tr>
+                <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Contrato.Extrato)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.PortariaNumero)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.ProtocoloDiof)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.DataPublicacao)</td>
+                <td class="col-sm-2">@Html.DisplayFor(modelItem => item.DataInicio)</td>
+                <td class="col-sm-1">
+                    <div class="btn-group" role="group" aria-label="Operações">
+                        <a asp-action="Details" class="btn btn-secondary" asp-route-id="@item.PortariaId" title="Ver Detalhes"><i class="fa-regular fa-eye"></i></a>
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.PortariaId" title="Editar"><i class="fas fa-pen-square"></i></a>
+                        <button class="btn btn-danger delete-button" data-id="@item.PortariaId" data-url="/Portarias/Delete" title="Excluir"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title font-weight-bold" id="deleteModalLabel">Excluir Aditivo</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/deleteModal.js"></script>
+}

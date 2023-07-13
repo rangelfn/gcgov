@@ -1,13 +1,22 @@
-﻿namespace GCGov.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GCGov.Models;
 
 public partial class Servidor
 {
-    public int Matricula { get; set; }
-    public string Nome { get; set; } = null!;
-    public string Cpf { get; set; } = null!;
-    public int? UgCodigoId { get; set; }
-    public int? UgDpId { get; set; }
+	[Display(Name = "Matrícula")]
+	public int Matricula { get; set; }
+	[Display(Name = "Nome")]
+	public string Nome { get; set; } = null!;
+	[Display(Name = "CPF")]
+	public string Cpf { get; set; } = null!;
+	[Display(Name = "Unidade Gestora")]
+	public int? UgCodigoId { get; set; }
+	[Display(Name = "Departamento")]
+	public int? UgDpId { get; set; }
     public virtual ICollection<PortariaServidor> PortariasServidores { get; set; } = new List<PortariaServidor>();
-    public virtual UnidadesGestora? UgCodigo { get; set; }
-    public virtual UgDepartamento? UgDp { get; set; }
+	[Display(Name = "Unidade Gestora")] 
+	public virtual UnidadesGestora? UgCodigo { get; set; }
+	[Display(Name = "Departamento")]
+	public virtual UgDepartamento? UgDp { get; set; }
 }

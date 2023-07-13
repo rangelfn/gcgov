@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace GCGov.Models;
 
@@ -15,9 +16,9 @@ public partial class Portaria
     [Display(Name = "Data Inicio")]
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)] 
     public DateTime? DataInicio { get; set; }
-    [Display(Name = "Extrato do contrato")]
+    [DisplayName("Extrato do Contrato")]
     public int? ContratoId { get; set; }
-    [Display(Name = "Extrato do contrato")]
+    [DisplayName("Extrato do Contrato")]
     public virtual Contrato? Contrato { get; set; }
     public virtual ICollection<PortariaServidor> PortariasServidores { get; set; } = new List<PortariaServidor>();
 }
