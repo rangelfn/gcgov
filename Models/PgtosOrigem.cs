@@ -19,14 +19,12 @@ public partial class PgtosOrigem
     [DisplayName("Natureza Despesa")]
     public int? NatDespId { get; set; }
     
-    
     [DisplayName("Extrato Contrato")]
     public virtual Contrato? Contrato { get; set; }
     [DisplayName("Natureza Despesa")]
     public virtual NaturezaDespesa? NatDesp { get; set; }
     [DisplayName("Mod. Pagamento")]
     public virtual PgtosModalidade? PgtoMod { get; set; }
-    
     public virtual ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
 
 
