@@ -30,6 +30,8 @@ public partial class GCGovContext : DbContext
     public virtual DbSet<UgUsuario> UgUsuarios { get; set; }
     public virtual DbSet<UnidadesGestora> UnidadesGestoras { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Tipo> Tipo { get; set; }
+    public virtual DbSet<Complexidade> Complexidade { get; set; }
     public virtual DbSet<ViewPessoasPorContrato> PessoasPorContratos { get; set; }
     public virtual DbSet<ViewContratosPagamento> ViewContratosPagamentos { get; set; }
     public virtual DbSet<ViewDespesasPorContrato> DespesasPorContratos { get; set; }
@@ -97,6 +99,13 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.Usuario).HasMaxLength(70).IsUnicode(false);
         });
 
+		modelBuilder.Entity<Complexidade>(entity =>
+		{
+			entity.HasKey(e => e.ComplexId).HasName("PK__Complexi__E14B3DF62E6CCD56");
+			entity.ToTable("Complexidade");
+			entity.Property(e => e.ComplexId).HasColumnName("ComplexID");
+			entity.Property(e => e.ComplexNome).HasMaxLength(255).IsUnicode(false);
+		}); 
         modelBuilder.Entity<Contrato>(entity =>
         {
             entity.HasKey(e => e.ContratoId).HasName("PK__Contrato__B238E953E80E5665");
@@ -240,7 +249,15 @@ public partial class GCGovContext : DbContext
                 .HasConstraintName("FK__Portarias__Porta__26CFC035");
         });
 
-        modelBuilder.Entity<Servidor>(entity =>
+		modelBuilder.Entity<Tipo>(entity =>
+		{
+			entity.HasKey(e => e.TipoId).HasName("PK__Tipo__97099E97EE728B38");
+			entity.ToTable("Tipo");
+			entity.Property(e => e.TipoId).HasColumnName("TipoID");
+			entity.Property(e => e.TipoNome).HasMaxLength(255).IsUnicode(false);
+		});
+
+		modelBuilder.Entity<Servidor>(entity =>
         {
             entity.HasKey(e => e.Matricula).HasName("PK__Servidor__0FB9FB4E339FD2DB");
             entity.Property(e => e.Matricula).ValueGeneratedNever();

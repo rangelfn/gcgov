@@ -48,9 +48,13 @@ namespace GCGov.Models
 
         [Display(Name = "Departamento")]
         public int? UgDpId { get; set; }
+		[Display(Name = "Complexidade")]
+		public int? ComplexId { get; set; }
+		[Display(Name = "Tipo")]
+		public int? TipoId { get; set; }
 
-        // Propriedades adicionadas para os campos de nome
-        [Display(Name = "Modalidade")]
+		// Propriedades adicionadas para os campos de nome
+		[Display(Name = "Modalidade")]
         public virtual Modalidade? Modalidade { get; set; }
 
         [Display(Name = "Unidade Gestora")]
@@ -58,11 +62,15 @@ namespace GCGov.Models
 
         [Display(Name = "Departamento")]
         public virtual UgDepartamento? UgDp { get; set; }
+		[Display(Name = "Complexidade")]
+		public virtual Complexidade? Complex { get; set; }
+		[Display(Name = "Tipo")]
+		public virtual Tipo? Tipo { get; set; }
 
-        public virtual ICollection<Aditivo> Aditivos { get; set; } = new List<Aditivo>();
+		public virtual ICollection<Aditivo> Aditivos { get; set; } = new List<Aditivo>();
         public virtual ICollection<Apostilamento> Apostilamentos { get; set; } = new List<Apostilamento>();
         public virtual ICollection<Edital> Editais { get; set; } = new List<Edital>();
         public virtual ICollection<PgtosOrigem> PgtosOrigens { get; set; } = new List<PgtosOrigem>();
         public virtual ICollection<Portaria> Portaria { get; set; } = new List<Portaria>();
-    }
+	}
 }

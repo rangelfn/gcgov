@@ -55,7 +55,7 @@
 	('Global'),
 	('Estimado')
 
-  INSERT INTO ModLicitacao (ModNome) VALUES
+  INSERT INTO Modalidade (ModNome) VALUES
 	('Concorrência'),
 	('Tomada de Preços'),
 	('Convite'),
@@ -64,5 +64,11 @@
 	('Pregão'),
 	('Dispensa'),
 	('Dialogo Competitivo'),
-	('Inexibilidade')
+	('Inexibilidade'),
+	('Termo de Cooperação'),
+	('Ata d Registro')
 
+	  INSERT INTO Complexidade (ComplexNome) VALUES
+	('Baixa'),
+	('Média'),
+	('Alta')

@@ -11,30 +11,15 @@
     <h4>PortariaServidor</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Funcao)
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.Funcao)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.Funcao)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.Resolucao)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.Resolucao)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.MatriculaNavigation)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.MatriculaNavigation.Matricula)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.Portaria)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Funcao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Resolucao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Resolucao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MatriculaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MatriculaNavigation.Matricula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Portaria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Portaria.PortariaId)
-        </dd>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.Portaria.PortariaId)</dd>
     </dl>
     
     <form asp-action="Delete">

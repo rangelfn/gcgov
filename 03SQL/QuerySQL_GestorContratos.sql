@@ -53,9 +53,25 @@ CREATE TABLE UgUsuarios (
 ------------------------
 -- Criação da Modalidade
 ------------------------
-CREATE TABLE ModLicitacao (
+CREATE TABLE Modalidade (
   ModId INT PRIMARY KEY IDENTITY,
   ModNome VARCHAR(255) NOT NULL
+);
+
+----------------------------------
+-- Criação da tabela Complexidade
+----------------------------------
+CREATE TABLE Complexidade (
+  ComplexID INT PRIMARY KEY IDENTITY,
+  ComplexNome VARCHAR(255) NOT NULL
+);
+
+----------------------------------
+-- Criação da tabela Tipo
+----------------------------------
+CREATE TABLE Tipo (
+  TipoID INT PRIMARY KEY IDENTITY,
+  TipoNome VARCHAR(255) NOT NULL
 );
 
 ------------------------------
@@ -73,9 +89,13 @@ CREATE TABLE Contratos (
   LinkPublico VARCHAR(255) NOT NULL,
   DataAssinatura DATE NOT NULL,
   ProtocoloDiof VARCHAR(255) NOT NULL,
-  ModId INT,
-  FOREIGN KEY (ModId) REFERENCES ModLicitacao (ModId),
   Valor DECIMAL(10, 2),
+  ComplexID INT,
+  FOREIGN KEY (ComplexID) REFERENCES Complexidade (ComplexID),
+  TipoID INT,
+  FOREIGN KEY (TipoID) REFERENCES Tipo (TipoID),
+  ModId INT,
+  FOREIGN KEY (ModId) REFERENCES Modalidade (ModId),
   UgCodigoID INT,
   FOREIGN KEY (UgCodigoID) REFERENCES UnidadesGestoras (UgCodigoID),
   UgDpID INT,
@@ -143,7 +163,7 @@ CREATE TABLE PgtosModalidade (
 -- Criação da tabela PagamentoTipo
 ----------------------------------
 CREATE TABLE PgtosOrigem (
-  PgtoTipoID INT PRIMARY KEY IDENTITY,
+  PgtosOrigemID INT PRIMARY KEY IDENTITY,
   NotaEmpenho VARCHAR(255) NOT NULL,
   DataCadastro DATE NOT NULL,
   PgtoModID INT,
@@ -165,8 +185,8 @@ CREATE TABLE Pagamentos (
   Valor DECIMAL(10, 2) NOT NULL,
   DataPagamento DATE NOT NULL,
   Parcela VARCHAR(10) NOT NULL,
-  PgtoTipoID INT,
-  FOREIGN KEY (PgtoTipoID) REFERENCES PgtosTipos (PgtoTipoID) ON DELETE CASCADE 
+  PgtosOrigemID INT,
+  FOREIGN KEY (PgtosOrigemID) REFERENCES PgtosOrigem (PgtosOrigemID) ON DELETE CASCADE 
 );
 
 ---------------------------------------------------------------
@@ -251,3 +271,15 @@ ADD CONSTRAINT UC_AptNum UNIQUE (AptNum);
 
 ALTER TABLE Pagamentos
 ADD CONSTRAINT UC_NotaLancamento UNIQUE (NotaLancamento);
+
+ALTER TABLE Contratos
+ADD ComplexID INT;
+
+ALTER TABLE Contratos
+ADD TipoID INT;
+
+ALTER TABLE Contratos
+ADD CONSTRAINT FK_Complexidade_Contratos FOREIGN KEY (ComplexID) REFERENCES Complexidade (ComplexID);
+
+ALTER TABLE Contratos
+ADD CONSTRAINT FK_Tipo_Contratos FOREIGN KEY (TipoID) REFERENCES Tipo (TipoID);
