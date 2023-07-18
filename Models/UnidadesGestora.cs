@@ -4,6 +4,7 @@ public partial class UnidadesGestora
 {
     public int UgCodigoId { get; set; }
     public string UgNome { get; set; } = null!;
+    public string UgSigla { get; set; } = null!;
     public string UgCnpj { get; set; } = null!;
     public string UgContato { get; set; } = null!;
     public virtual ICollection<Contrato> Contratos { get; set; } = new List<Contrato>();

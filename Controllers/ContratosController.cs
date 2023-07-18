@@ -50,7 +50,7 @@ namespace GCGov.Controllers
         {
             ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome");
             ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome");
-            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome");
+            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgSigla");
             ViewData["TipoId"] = new SelectList(_context.Tipo, "TipoId", "TipoNome");
 			ViewData["ComplexId"] = new SelectList(_context.Complexidade, "ComplexId", "ComplexNome");
 
@@ -96,7 +96,7 @@ namespace GCGov.Controllers
             // Recuperar as listas de opções para os campos de seleção
             ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome", contrato.ModId);
             ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
-            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
+            ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgSigla", contrato.UgDpId);
 			ViewData["TipoId"] = new SelectList(_context.Tipo, "TipoId", "TipoNome", contrato.TipoId);
 			ViewData["ComplexId"] = new SelectList(_context.Complexidade, "ComplexId", "ComplexNome", contrato.ComplexId);
 
@@ -136,7 +136,7 @@ namespace GCGov.Controllers
 
             // Recuperar as listas de opções para os campos de seleção
             ViewData["ModId"] = new SelectList(_context.Modalidades, "ModId", "ModNome", contrato.ModId);
-            ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgNome", contrato.UgCodigoId);
+            ViewData["UgCodigoId"] = new SelectList(_context.UnidadesGestoras, "UgCodigoId", "UgSigla", contrato.UgCodigoId);
             ViewData["UgDpId"] = new SelectList(_context.UgDepartamentos, "UgDpId", "UgDpNome", contrato.UgDpId);
 			ViewData["TipoId"] = new SelectList(_context.Tipo, "TipoId", "TipoNome", contrato.TipoId);
 			ViewData["ComplexId"] = new SelectList(_context.Complexidade, "ComplexId", "ComplexNome", contrato.ComplexId);

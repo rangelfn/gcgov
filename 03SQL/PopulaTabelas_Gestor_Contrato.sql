@@ -56,17 +56,19 @@
 	('Estimado')
 
   INSERT INTO Modalidade (ModNome) VALUES
-	('Concorrência'),
-	('Tomada de Preços'),
-	('Convite'),
-	('Concurso'),
-	('Leilão'),
-	('Pregão'),
-	('Dispensa'),
-	('Dialogo Competitivo'),
-	('Inexibilidade'),
-	('Termo de Cooperação'),
-	('Ata d Registro')
+		('Ata de Registro'),
+		('Concorrência'),
+		('Concurso'),
+		('Convite'),
+		('Convênio'),
+		('Dialogo Competitivo'),
+		('Dispensa'),
+		('Inexibilidade'),
+		('Leilão'),
+		('Pregão'),
+		('Tomada de Preços'),
+		('Termo de Cooperação')
+
 
 	  INSERT INTO Complexidade (ComplexNome) VALUES
 	('Baixa'),

@@ -58,8 +58,8 @@ public partial class GCGovContext : DbContext
         modelBuilder.Entity<Aditivo>(entity =>
         {
          
-            entity.HasKey(e => e.AdtId).HasName("PK__Aditivos__46EAF0F7B596C7A5");
-            entity.HasIndex(e => e.AdtNum, "UC_AdtNum").IsUnique();
+            entity.HasKey(e => e.AdtId).HasName("PK__Aditivos__46EAF0F798F91158");
+            entity.HasIndex(e => e.AdtNum, "UQ__Aditivos__05AB3439C4DCA937").IsUnique();
             entity.Property(e => e.AdtId).HasColumnName("AdtID");
             entity.Property(e => e.AdtData).HasColumnType("date");
             entity.Property(e => e.AdtNum).HasMaxLength(255).IsUnicode(false);
@@ -68,13 +68,13 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.AdtValor).HasColumnType("decimal(10, 2)");
             entity.HasOne(d => d.Contrato).WithMany(p => p.Aditivos)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Aditivos__Contra__0C1BC9F9");
+                .HasConstraintName("FK__Aditivos__Contra__7CA47C3F");
         });
 
         modelBuilder.Entity<Apostilamento>(entity =>
         {
-            entity.HasKey(e => e.AptId).HasName("PK__Apostila__8D24E752F4E26126");
-            entity.HasIndex(e => e.AptNum, "UC_AptNum").IsUnique();
+            entity.HasKey(e => e.AptId).HasName("PK__Apostila__8D24E752119BE287");
+            entity.HasIndex(e => e.AptNum, "UQ__Apostila__656D61EE2AAA83F2").IsUnique();
             entity.Property(e => e.AptId).HasColumnName("AptID");
             entity.Property(e => e.AptData).HasColumnType("date");
             entity.Property(e => e.AptDesc).HasMaxLength(255).IsUnicode(false);
@@ -83,12 +83,12 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.AptValor).HasColumnType("decimal(10, 2)");
             entity.HasOne(d => d.Contrato).WithMany(p => p.Apostilamentos)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Apostilam__Contr__0EF836A4");
+                .HasConstraintName("FK__Apostilam__Contr__00750D23");
         });
 
         modelBuilder.Entity<Auditoria>(entity =>
         {
-            entity.HasKey(e => e.AuditoriaId).HasName("PK__Auditori__095694E3CB27DF6E");
+            entity.HasKey(e => e.AuditoriaId).HasName("PK__Auditori__095694E3D5BDF910");
             entity.Property(e => e.AuditoriaId).HasColumnName("AuditoriaID");
             entity.Property(e => e.Acao).HasMaxLength(10).IsUnicode(false);
             entity.Property(e => e.Antes).HasMaxLength(4000).IsUnicode(false);
@@ -101,15 +101,15 @@ public partial class GCGovContext : DbContext
 
 		modelBuilder.Entity<Complexidade>(entity =>
 		{
-			entity.HasKey(e => e.ComplexId).HasName("PK__Complexi__E14B3DF62E6CCD56");
+			entity.HasKey(e => e.ComplexId).HasName("PK__Complexi__E14B3DF612E4C4B2");
 			entity.ToTable("Complexidade");
 			entity.Property(e => e.ComplexId).HasColumnName("ComplexID");
 			entity.Property(e => e.ComplexNome).HasMaxLength(255).IsUnicode(false);
 		}); 
         modelBuilder.Entity<Contrato>(entity =>
         {
-            entity.HasKey(e => e.ContratoId).HasName("PK__Contrato__B238E953E80E5665");
-            entity.HasIndex(e => e.Extrato, "UC_Extrato").IsUnique();
+            entity.HasKey(e => e.ContratoId).HasName("PK__Contrato__B238E95388C29E8D");
+            entity.HasIndex(e => e.Extrato, "UQ__Contrato__D1F20E81274926C4").IsUnique();
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.Contratada).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.Contratante).HasMaxLength(255).IsUnicode(false);
@@ -121,23 +121,32 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.Objeto).HasMaxLength(4000).IsUnicode(false);
             entity.Property(e => e.ProcessoSei).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.ProtocoloDiof).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.ComplexId).HasColumnName("ComplexId");
+            entity.Property(e => e.TipoId).HasColumnName("TipoId");
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.UgDpId).HasColumnName("UgDpID");
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+
             entity.HasOne(d => d.Modalidade).WithMany(p => p.Contratos)
                 .HasForeignKey(d => d.ModId)
-                .HasConstraintName("FK__Contratos__ModLi__047AA831");
+                .HasConstraintName("FK__Contratos__ModId__731B1205");
             entity.HasOne(d => d.UgCodigo).WithMany(p => p.Contratos)
                 .HasForeignKey(d => d.UgCodigoId)
-                .HasConstraintName("FK__Contratos__UgCod__056ECC6A");
+                .HasConstraintName("FK__Contratos__UgCod__740F363E");
             entity.HasOne(d => d.UgDp).WithMany(p => p.Contratos).HasForeignKey(d => d.UgDpId)
-                .HasConstraintName("FK__Contratos__UgDpI__0662F0A3");
+                .HasConstraintName("FK__Contratos__UgDpI__75035A77");
+            entity.HasOne(d => d.Complex).WithMany(p => p.Contratos)
+                .HasForeignKey(d => d.ComplexId)
+                .HasConstraintName("FK__Contratos__Compl__7132C993");
+            entity.HasOne(d => d.Tipo).WithMany(p => p.Contratos)
+                .HasForeignKey(d => d.TipoId)
+                .HasConstraintName("FK__Contratos__TipoI__7226EDCC");
         });
 
         modelBuilder.Entity<Edital>(entity =>
         {
-            entity.HasKey(e => e.EdtId).HasName("PK__Editais__1E817285C0807669");
-            entity.HasIndex(e => e.EdtNum, "UC_EdtNum").IsUnique();
+            entity.HasKey(e => e.EdtId).HasName("PK__Editais__1E8172859374AC03");
+            entity.HasIndex(e => e.EdtNum, "UQ__Editais__FBA2C042C2234F06").IsUnique();
             entity.Property(e => e.EdtId).HasColumnName("EdtID");
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.EdtData).HasColumnType("date");
@@ -146,12 +155,12 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.EdtTipo).HasMaxLength(255).IsUnicode(false);
             entity.HasOne(d => d.Contrato).WithMany(p => p.Editais)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Editais__Contrat__093F5D4E");
+                .HasConstraintName("FK__Editais__Contrat__78D3EB5B");
         });
 
         modelBuilder.Entity<Modalidade>(entity =>
         {
-            entity.HasKey(e => e.ModId).HasName("PK__ModLicit__FE9CF016C0C5EC6E");
+            entity.HasKey(e => e.ModId).HasName("PK__Modalida__FB1F17A70615D70E");
             entity.ToTable("Modalidade");
             entity.Property(e => e.ModId).HasColumnName("ModId");
             entity.Property(e => e.ModNome).HasMaxLength(255).IsUnicode(false);
@@ -159,7 +168,7 @@ public partial class GCGovContext : DbContext
 
         modelBuilder.Entity<NaturezaDespesa>(entity =>
         {
-            entity.HasKey(e => e.NatDespId).HasName("PK__DotacaoO__006DDAF49D1143B5");
+            entity.HasKey(e => e.NatDespId).HasName("PK__Natureza__E0A006FA8C5F3C69");
             entity.ToTable("NaturezaDespesa");
             entity.Property(e => e.NatDespId).ValueGeneratedNever();
             entity.Property(e => e.ElementoDespesa).HasMaxLength(50).IsUnicode(false);
@@ -170,8 +179,8 @@ public partial class GCGovContext : DbContext
 
         modelBuilder.Entity<Pagamento>(entity =>
         {
-            entity.HasKey(e => e.PgtoId).HasName("PK__Pagament__DCC60064C7FA0206");
-            entity.HasIndex(e => e.NotaLancamento, "UC_NotaLancamento").IsUnique();
+            entity.HasKey(e => e.PgtoId).HasName("PK__Pagament__DCC600649EEFD1B7");
+            entity.HasIndex(e => e.NotaLancamento, "UQ__Pagament__12B0B6F1F6CEF56C").IsUnique();
             entity.Property(e => e.PgtoId).HasColumnName("PgtoID");
             entity.Property(e => e.DataPagamento).HasColumnType("date");
             entity.Property(e => e.NotaLancamento).HasMaxLength(255).IsUnicode(false);
@@ -179,15 +188,14 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.Parcela).HasMaxLength(10).IsUnicode(false);
             entity.Property(e => e.PreparacaoPagamento).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
-            
             entity.HasOne(d => d.PgtosOrigens).WithMany(p => p.Pagamentos)
                 .HasForeignKey(d => d.PgtoOrigemId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Pagamento__PgtoT__1A69E950");
+                .HasConstraintName("FK__Pagamento__PgtoO__1EF99443");
         });
 
         modelBuilder.Entity<PgtosModalidade>(entity =>
         {
-            entity.HasKey(e => e.PgtoModId).HasName("PK__PgtosMod__CDE0E121192A7843");
+            entity.HasKey(e => e.PgtoModId).HasName("PK__PgtosMod__CDE0E12177B2323F");
             entity.ToTable("PgtosModalidade");
             entity.Property(e => e.PgtoModId).HasColumnName("PgtoModID");
             entity.Property(e => e.PgtoModNome).HasMaxLength(255).IsUnicode(false);
@@ -195,7 +203,7 @@ public partial class GCGovContext : DbContext
 
         modelBuilder.Entity<PgtosOrigem>(entity =>
         {
-            entity.HasKey(e => e.PgtoOrigemId).HasName("PK__PgtosTip__CA71D8F6BA7EF8E2");
+            entity.HasKey(e => e.PgtoOrigemId).HasName("PK__PgtosOri__D93289D821679449");
             entity.ToTable("PgtosOrigem");
             entity.Property(e => e.PgtoOrigemId).HasColumnName("PgtoOrigemId");
             entity.Property(e => e.DataCadastro).HasColumnType("date");
@@ -203,55 +211,49 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.PgtoModId).HasColumnName("PgtoModID");
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.NatDespId).HasColumnName("NatDespId");
-
             entity.HasOne(d => d.Contrato).WithMany(p => p.PgtosOrigens)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__PgtosOrigem__Contr__1699586C");
-
+                .HasConstraintName("FK__PgtosOrig__Contr__08162EEB");
             entity.HasOne(d => d.NatDesp).WithMany(p => p.PgtosOrigens)
                 .HasForeignKey(d => d.NatDespId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__PgtosOrigem__Natur__178D7CA5");
-
+                .HasConstraintName("FK__PgtosOrig__NatDe__090A5324");
             entity.HasOne(d => d.PgtoMod).WithMany(p => p.PgtosOrigens)
                 .HasForeignKey(d => d.PgtoModId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__PgtosOrigem__PgtoM__15A53433");
+                .HasConstraintName("FK__PgtosOrig__PgtoM__07220AB2");
         });
 
         modelBuilder.Entity<Portaria>(entity =>
         {
-            entity.HasKey(e => e.PortariaId).HasName("PK__Portaria__19534B500D08A0D8");
+            entity.HasKey(e => e.PortariaId).HasName("PK__Portaria__19534B50A11B878A");
             entity.Property(e => e.PortariaId).HasColumnName("PortariaID");
             entity.Property(e => e.ContratoId).HasColumnName("ContratoID");
             entity.Property(e => e.DataInicio).HasColumnType("date");
             entity.Property(e => e.DataPublicacao).HasColumnType("date");
             entity.Property(e => e.PortariaNumero).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.ProtocoloDiof).HasMaxLength(255).IsUnicode(false);
-            
             entity.HasOne(d => d.Contrato).WithMany(p => p.Portaria)
                 .HasForeignKey(d => d.ContratoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Portarias__Contr__1E3A7A34");
+                .HasConstraintName("FK__Portarias__Contr__10AB74EC");
         });
 
         modelBuilder.Entity<PortariaServidor>(entity =>
         {
-            entity.HasKey(e => e.PortariasServidorID).HasName("PK__Portaria__3F98A5D10F60BA5E");
+            entity.HasKey(e => e.PortariasServidorID).HasName("PK__Portaria__2434DCDB81FE3684");
             entity.Property(e => e.PortariasServidorID).HasColumnName("PortariasServidorID");
             entity.Property(e => e.Funcao).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.PortariaId).HasColumnName("PortariaID");
             entity.Property(e => e.Resolucao).HasMaxLength(255).IsUnicode(false);
-
             entity.HasOne(d => d.MatriculaNavigation).WithMany(p => p.PortariasServidores)
                 .HasForeignKey(d => d.Matricula).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Portarias__Matri__27C3E46E");
-
+                .HasConstraintName("FK__Portarias__Matri__1940BAED");
             entity.HasOne(d => d.Portaria).WithMany(p => p.PortariasServidores)
                 .HasForeignKey(d => d.PortariaId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Portarias__Porta__26CFC035");
+                .HasConstraintName("FK__Portarias__Porta__184C96B4");
         });
 
 		modelBuilder.Entity<Tipo>(entity =>
 		{
-			entity.HasKey(e => e.TipoId).HasName("PK__Tipo__97099E97EE728B38");
+			entity.HasKey(e => e.TipoId).HasName("PK__Tipo__97099E97546EE216");
 			entity.ToTable("Tipo");
 			entity.Property(e => e.TipoId).HasColumnName("TipoID");
 			entity.Property(e => e.TipoNome).HasMaxLength(255).IsUnicode(false);
@@ -259,48 +261,43 @@ public partial class GCGovContext : DbContext
 
 		modelBuilder.Entity<Servidor>(entity =>
         {
-            entity.HasKey(e => e.Matricula).HasName("PK__Servidor__0FB9FB4E339FD2DB");
+            entity.HasKey(e => e.Matricula).HasName("PK__Servidor__0FB9FB4E8A404783");
             entity.Property(e => e.Matricula).ValueGeneratedNever();
             entity.Property(e => e.Cpf).HasMaxLength(11).IsUnicode(false).HasColumnName("CPF");
             entity.Property(e => e.Nome).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.UgDpId).HasColumnName("UgDpID");
-
             entity.HasOne(d => d.UgCodigo).WithMany(p => p.Servidores)
                 .HasForeignKey(d => d.UgCodigoId)
-                .HasConstraintName("FK__Servidore__UgCod__22FF2F51");
-
+                .HasConstraintName("FK__Servidore__UgCod__147C05D0");
             entity.HasOne(d => d.UgDp).WithMany(p => p.Servidores)
                 .HasForeignKey(d => d.UgDpId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Servidore__UgDpI__23F3538A");
+                .HasConstraintName("FK__Servidore__UgDpI__15702A09");
         });
 
         modelBuilder.Entity<UgDepartamento>(entity =>
         {
-            entity.HasKey(e => e.UgDpId).HasName("PK__UgDepart__7D98AA99128B9E4F");
+            entity.HasKey(e => e.UgDpId).HasName("PK__UgDepart__7D98AA99BCD87F7D");
             entity.Property(e => e.UgDpId).HasColumnName("UgDpID");
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.UgDpNome).HasMaxLength(255).IsUnicode(false);
-
             entity.HasOne(d => d.UgCodigo).WithMany(p => p.UgDepartamentos)
                 .HasForeignKey(d => d.UgCodigoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__UgDeparta__UgCod__762C88DA");
+                .HasConstraintName("FK__UgDeparta__UgCod__61F08603");
         });
 
         modelBuilder.Entity<UgUsuario>(entity =>
         {
-            entity.HasKey(e => e.UgUsuariosId).HasName("PK__UgUsuari__390F23C2D0392C03");
+            entity.HasKey(e => e.UgUsuariosId).HasName("PK__UgUsuari__390F23C2108357E8");
             entity.Property(e => e.UgUsuariosId).HasColumnName("UgUsuariosID");
             entity.Property(e => e.UgCodigoId).HasColumnName("UgCodigoID");
             entity.Property(e => e.UsuarioId).HasColumnName("UsuarioID");
-
             entity.HasOne(d => d.UgCodigo).WithMany(p => p.UgUsuarios)
                 .HasForeignKey(d => d.UgCodigoId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__UgUsuario__UgCod__7FB5F314");
-
+                .HasConstraintName("FK__UgUsuario__UgCod__67A95F59");
             entity.HasOne(d => d.Usuario).WithMany(p => p.UgUsuarios)
                 .HasForeignKey(d => d.UsuarioId).OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__UgUsuario__Usuar__7EC1CEDB");
+                .HasConstraintName("FK__UgUsuario__Usuar__66B53B20");
         });
 
         modelBuilder.Entity<UnidadesGestora>(entity =>
@@ -310,11 +307,13 @@ public partial class GCGovContext : DbContext
             entity.Property(e => e.UgCnpj).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.UgContato).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.UgNome).HasMaxLength(255).IsUnicode(false);
+            entity.Property(e => e.UgSigla).HasMaxLength(255).IsUnicode(false);
+
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.UsuarioId).HasName("PK__Usuarios__2B3DE798B299829D");
+            entity.HasKey(e => e.UsuarioId).HasName("PK__Usuarios__2B3DE79861FEA230");
             entity.Property(e => e.UsuarioId).HasColumnName("UsuarioID");
             entity.Property(e => e.Email).HasMaxLength(255).IsUnicode(false);
             entity.Property(e => e.LoginCpf).HasMaxLength(255).IsUnicode(false).HasColumnName("LoginCPF");

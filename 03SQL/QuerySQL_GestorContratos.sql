@@ -6,7 +6,7 @@ CREATE DATABASE GCGov
 -----------------------------
 --Selecionando o banco criado
 -----------------------------
-USE GCGov
+USE GestorContratos
 
 --------------------------------------
 -- Criação da tabela Unidades Gestoras
@@ -14,8 +14,9 @@ USE GCGov
 CREATE TABLE UnidadesGestoras (
   UgCodigoID INT PRIMARY KEY,
   UgNome VARCHAR(255) NOT NULL,
-  UgCnpj VARCHAR(255) NOT NULL,
-  UgContato VARCHAR(255) NOT NULL
+  UgSigla VARCHAR(50) NOT NULL,
+  UgCnpj VARCHAR(50) NOT NULL,
+  UgContato VARCHAR(50) NOT NULL
 );
 
 ------------------------------------
@@ -23,7 +24,8 @@ CREATE TABLE UnidadesGestoras (
   ----------------------------------
 CREATE TABLE UgDepartamentos (
   UgDpID INT PRIMARY KEY IDENTITY,
-  UgDpNome VARCHAR(255) NOT NULL,
+  UgDpNome VARCHAR(50) NOT NULL,
+  UgDpSigla Varchar(50) NOT NULL,
   UgCodigoID INT,
   FOREIGN KEY (UgCodigoID) REFERENCES UnidadesGestoras (UgCodigoID) ON DELETE CASCADE
 );
@@ -34,9 +36,9 @@ CREATE TABLE UgDepartamentos (
 CREATE TABLE Usuarios (
   UsuarioID INT PRIMARY KEY IDENTITY,
   Nome VARCHAR(255) NOT NULL,
-  LoginCPF VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  Senha VARCHAR(255) NOT NULL
+  LoginCPF VARCHAR(50) NOT NULL,
+  Email VARCHAR(50) NOT NULL,
+  Senha VARCHAR(50) NOT NULL
 );
 
 -------------------------------
@@ -55,7 +57,7 @@ CREATE TABLE UgUsuarios (
 ------------------------
 CREATE TABLE Modalidade (
   ModId INT PRIMARY KEY IDENTITY,
-  ModNome VARCHAR(255) NOT NULL
+  ModNome VARCHAR(50) NOT NULL
 );
 
 ----------------------------------
@@ -63,7 +65,7 @@ CREATE TABLE Modalidade (
 ----------------------------------
 CREATE TABLE Complexidade (
   ComplexID INT PRIMARY KEY IDENTITY,
-  ComplexNome VARCHAR(255) NOT NULL
+  ComplexNome VARCHAR(50) NOT NULL
 );
 
 ----------------------------------
@@ -71,7 +73,7 @@ CREATE TABLE Complexidade (
 ----------------------------------
 CREATE TABLE Tipo (
   TipoID INT PRIMARY KEY IDENTITY,
-  TipoNome VARCHAR(255) NOT NULL
+  TipoNome VARCHAR(50) NOT NULL
 );
 
 ------------------------------
@@ -85,10 +87,10 @@ CREATE TABLE Contratos (
   Objeto VARCHAR(4000) NOT NULL,
   Vigencia INT NOT NULL,
   DataInicio DATE NOT NULL,
-  ProcessoSei VARCHAR(255) NOT NULL,
+  ProcessoSei VARCHAR(50) NOT NULL,
   LinkPublico VARCHAR(255) NOT NULL,
   DataAssinatura DATE NOT NULL,
-  ProtocoloDiof VARCHAR(255) NOT NULL,
+  ProtocoloDiof VARCHAR(50) NOT NULL,
   Valor DECIMAL(10, 2),
   ComplexID INT,
   FOREIGN KEY (ComplexID) REFERENCES Complexidade (ComplexID),
@@ -108,7 +110,7 @@ CREATE TABLE Contratos (
 CREATE TABLE Editais (
   EdtID INT PRIMARY KEY IDENTITY,
   EdtNum VARCHAR(255) UNIQUE NOT NULL,
-  EdtTipo VARCHAR(255) NOT NULL,
+  EdtTipo VARCHAR(50) NOT NULL,
   EdtLink VARCHAR(255) NOT NULL,
   EdtData DATE NOT NULL,
   ContratoID INT,
@@ -120,10 +122,10 @@ CREATE TABLE Editais (
 -----------------------------
 CREATE TABLE Aditivos (
   AdtID INT PRIMARY KEY IDENTITY,
-  AdtNum VARCHAR(255) UNIQUE NOT NULL,
-  Descricao VARCHAR(255) NOT NULL,
+  AdtNum VARCHAR(50) UNIQUE NOT NULL,
+  AdtDesc VARCHAR(255) NOT NULL,
   AdtData DATE,
-  Valor DECIMAL(10, 2) NOT NULL,
+  AdtValor DECIMAL(10, 2) NOT NULL,
   ContratoID INT,
   FOREIGN KEY (ContratoID) REFERENCES Contratos (ContratoID) ON DELETE CASCADE
 );
@@ -133,10 +135,10 @@ CREATE TABLE Aditivos (
 -----------------------------------
 CREATE TABLE Apostilamentos (
   AptID INT PRIMARY KEY IDENTITY,
-  AptNum VARCHAR(255) UNIQUE NOT NULL,
+  AptNum VARCHAR(50) UNIQUE NOT NULL,
   AptDesc VARCHAR(255) NOT NULL,
   AptData DATE,
-  Valor DECIMAL(10, 2) NOT NULL,
+  AdtValor DECIMAL(10, 2) NOT NULL,
   ContratoID INT,
   FOREIGN KEY (ContratoID) REFERENCES Contratos (ContratoID) ON DELETE CASCADE
 );
@@ -144,7 +146,7 @@ CREATE TABLE Apostilamentos (
 -----------------------------------------------------------------------------
 -- Criação da tabela Despesa com restrição CHECK utilizando expressão regular
 -----------------------------------------------------------------------------
-CREATE TABLE NaturezaDespesas (
+CREATE TABLE NaturezaDespesa (
   NatDespId INT PRIMARY KEY,
   FonteRecurso VARCHAR(50),
   ProgramaTrabalho VARCHAR(50),
@@ -156,15 +158,15 @@ CREATE TABLE NaturezaDespesas (
 ----------------------------------
 CREATE TABLE PgtosModalidade (
   PgtoModID INT PRIMARY KEY IDENTITY,
-  PgtoModNome VARCHAR(255) NOT NULL
+  PgtoModNome VARCHAR(50) NOT NULL
 );
 
 ----------------------------------
 -- Criação da tabela PagamentoTipo
 ----------------------------------
 CREATE TABLE PgtosOrigem (
-  PgtosOrigemID INT PRIMARY KEY IDENTITY,
-  NotaEmpenho VARCHAR(255) NOT NULL,
+  PgtoOrigemId INT PRIMARY KEY IDENTITY,
+  NotaEmpenho VARCHAR(50) NOT NULL,
   DataCadastro DATE NOT NULL,
   PgtoModID INT,
   FOREIGN KEY (PgtoModID) REFERENCES PgtosModalidade (PgtoModID) ON DELETE CASCADE,
@@ -179,14 +181,14 @@ CREATE TABLE PgtosOrigem (
 -------------------------------
 CREATE TABLE Pagamentos (
   PgtoID INT PRIMARY KEY IDENTITY,
-  NotaLancamento VARCHAR(255) UNIQUE NOT NULL,
-  PreparacaoPagamento VARCHAR(255) NOT NULL,
+  NotaLancamento VARCHAR(50) UNIQUE NOT NULL,
+  PreparacaoPagamento VARCHAR(50) NOT NULL,
   OrdemBancaria VARCHAR(255) NOT NULL,
   Valor DECIMAL(10, 2) NOT NULL,
   DataPagamento DATE NOT NULL,
   Parcela VARCHAR(10) NOT NULL,
-  PgtosOrigemID INT,
-  FOREIGN KEY (PgtosOrigemID) REFERENCES PgtosOrigem (PgtosOrigemID) ON DELETE CASCADE 
+  PgtoOrigemId INT,
+  FOREIGN KEY (PgtoOrigemId) REFERENCES PgtosOrigem (PgtoOrigemId) ON DELETE CASCADE 
 );
 
 ---------------------------------------------------------------
@@ -194,8 +196,8 @@ CREATE TABLE Pagamentos (
 ---------------------------------------------------------------
 CREATE TABLE Portarias (
   PortariaID INT PRIMARY KEY IDENTITY,
-  PortariaNumero VARCHAR(255) NOT NULL,
-  ProtocoloDiof VARCHAR(255) NOT NULL,
+  PortariaNumero VARCHAR(50) NOT NULL,
+  ProtocoloDiof VARCHAR(50) NOT NULL,
   DataPublicacao DATE,
   DataInicio DATE,
   CHECK (DataPublicacao <= DataInicio),
@@ -222,8 +224,8 @@ CREATE TABLE Servidores (
 -----------------------------------
 CREATE TABLE PortariasServidores (
   PortariasServidorID INT PRIMARY KEY IDENTITY,
-  Funcao VARCHAR(255) NOT NULL,
-  Resolucao VARCHAR(255) NOT NULL,
+  Funcao VARCHAR(50) NOT NULL,
+  Resolucao VARCHAR(50) NOT NULL,
   PortariaID INT,
   FOREIGN KEY (PortariaID) REFERENCES Portarias (PortariaID) ON DELETE CASCADE,
   Matricula INT,
@@ -272,8 +274,8 @@ ADD CONSTRAINT UC_AptNum UNIQUE (AptNum);
 ALTER TABLE Pagamentos
 ADD CONSTRAINT UC_NotaLancamento UNIQUE (NotaLancamento);
 
-ALTER TABLE Contratos
-ADD ComplexID INT;
+ALTER TABLE UgDepartamentos
+ADD UgDpSigla Varchar(50);
 
 ALTER TABLE Contratos
 ADD TipoID INT;
@@ -283,3 +285,7 @@ ADD CONSTRAINT FK_Complexidade_Contratos FOREIGN KEY (ComplexID) REFERENCES Comp
 
 ALTER TABLE Contratos
 ADD CONSTRAINT FK_Tipo_Contratos FOREIGN KEY (TipoID) REFERENCES Tipo (TipoID);
+
+  EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'
+
+  EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'
