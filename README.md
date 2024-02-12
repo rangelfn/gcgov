@@ -1,5 +1,6 @@
 ## 🚀 Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
+- C#
 - AspNet Core
 - HTML
 - CSS
