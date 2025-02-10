@@ -37,7 +37,7 @@ Antes de rodar o projeto, instale os pacotes necessários:
  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 8.0.3
  dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 ```
-#Liste e veja se os pacotes foram instalados
+Liste e veja se os pacotes foram instalados
 ```sh
 -dotnet list package
 ```
