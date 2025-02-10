@@ -1,4 +1,4 @@
-# 📌 GCGov - Gestão de Contratos Públicos
+v# 📌 GCGov - Gestão de Contratos Públicos
 
 ## 🚀 Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -35,6 +35,11 @@ Antes de rodar o projeto, instale os pacotes necessários:
  dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.4
  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.4
  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 8.0.3
+ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+```
+#Liste e veja se os pacotes foram instalados
+```sh
+-dotnet list package
 ```
 
 ### **2️⃣ Configurar a string de conexão no `appsettings.json`**
